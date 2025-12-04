@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>RSTT v3.2.1 User Manual</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+  <style type="text/css">
+
+
+html {
+font-family: sans-serif; 
+line-height: 1.15; 
+-ms-text-size-adjust: 100%; 
+-webkit-text-size-adjust: 100%; 
+}
+
+
+body {
+margin: 0;
+}
+
+article,
+aside,
+footer,
+header,
+nav,
+section {
+display: block;
+}
+
+h1 {
+font-size: 2em;
+margin: 0.67em 0;
+}
+
+
+figcaption,
+figure,
+main { 
+display: block;
+}
+
+figure {
+margin: 1em 40px;
+}
+
+hr {
+box-sizing: content-box; 
+height: 0; 
+overflow: visible; 
+}
+
+pre {
+font-family: monospace, monospace; 
+font-size: 1em; 
+}
+
+
+a {
+background-color: transparent; 
+-webkit-text-decoration-skip: objects; 
+}
+
+a:active,
+a:hover {
+outline-width: 0;
+}
+
+abbr[title] {
+border-bottom: none; 
+text-decoration: underline; 
+text-decoration: underline dotted; 
+}
+
+b,
+strong {
+font-weight: inherit;
+}
+
+b,
+strong {
+font-weight: bolder;
+}
+
+code,
+kbd,
+samp {
+font-family: monospace, monospace; 
+font-size: 1em; 
+}
+
+dfn {
+font-style: italic;
+}
+
+mark {
+background-color: #ff0;
+color: #000;
+}
+
+small {
+font-size: 80%;
+}
+
+sub,
+sup {
+font-size: 75%;
+line-height: 0;
+position: relative;
+vertical-align: baseline;
+}
+sub {
+bottom: -0.25em;
+}
+sup {
+top: -0.5em;
+}
+
+
+audio,
+video {
+display: inline-block;
+}
+
+audio:not([controls]) {
+display: none;
+height: 0;
+}
+
+img {
+border-style: none;
+}
+
+svg:not(:root) {
+overflow: hidden;
+}
+
+
+button,
+input,
+optgroup,
+select,
+textarea {
+font-family: sans-serif; 
+font-size: 100%; 
+line-height: 1.15; 
+margin: 0; 
+}
+
+button,
+input { 
+overflow: visible;
+}
+
+button,
+select { 
+text-transform: none;
+}
+
+button,
+html [type="button"], 
+[type="reset"],
+[type="submit"] {
+-webkit-appearance: button; 
+}
+
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+border-style: none;
+padding: 0;
+}
+
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+outline: 1px dotted ButtonText;
+}
+
+fieldset {
+border: 1px solid #c0c0c0;
+margin: 0 2px;
+padding: 0.35em 0.625em 0.75em;
+}
+
+legend {
+box-sizing: border-box; 
+color: inherit; 
+display: table; 
+max-width: 100%; 
+padding: 0; 
+white-space: normal; 
+}
+
+progress {
+display: inline-block; 
+vertical-align: baseline; 
+}
+
+textarea {
+overflow: auto;
+}
+
+[type="checkbox"],
+[type="radio"] {
+box-sizing: border-box; 
+padding: 0; 
+}
+
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+height: auto;
+}
+
+[type="search"] {
+-webkit-appearance: textfield; 
+outline-offset: -2px; 
+}
+
+[type="search"]::-webkit-search-cancel-button,
+[type="search"]::-webkit-search-decoration {
+-webkit-appearance: none;
+}
+
+::-webkit-file-upload-button {
+-webkit-appearance: button; 
+font: inherit; 
+}
+
+
+details, 
+menu {
+display: block;
+}
+
+summary {
+display: list-item;
+}
+
+
+canvas {
+display: inline-block;
+}
+
+template {
+display: none;
+}
+
+
+[hidden] {
+display: none;
+}
+</style>
+  <style type="text/css">
+
+html {
+font-size: 62.5%;
+font-family: serif; }
+body {
+font-size: 1.8rem;
+line-height: 1.618;
+max-width: 38em;
+margin: auto;
+color: #4a4a4a;
+background-color: #f9f9f9;
+padding: 13px; }
+@media (max-width: 684px) {
+body {
+font-size: 1.53rem; } }
+@media (max-width: 382px) {
+body {
+font-size: 1.35rem; } }
+h1, h2, h3, h4, h5, h6 {
+line-height: 1.1;
+font-family: Verdana, Geneva, sans-serif;
+font-weight: 700;
+overflow-wrap: break-word;
+word-wrap: break-word;
+-ms-word-break: break-all;
+word-break: break-word;
+-ms-hyphens: auto;
+-moz-hyphens: auto;
+-webkit-hyphens: auto;
+hyphens: auto; }
+h1 {
+font-size: 2.35em; }
+h2 {
+font-size: 2.00em; }
+h3 {
+font-size: 1.75em; }
+h4 {
+font-size: 1.5em; }
+h5 {
+font-size: 1.25em; }
+h6 {
+font-size: 1em; }
+small, sub, sup {
+font-size: 75%; }
+hr {
+border-color: #2c8898; }
+a {
+text-decoration: none;
+color: #2c8898; }
+a:hover {
+color: #982c61;
+border-bottom: 2px solid #4a4a4a; }
+ul {
+padding-left: 1.4em; }
+li {
+margin-bottom: 0.4em; }
+blockquote {
+font-style: italic;
+margin-left: 1.5em;
+padding-left: 1em;
+border-left: 3px solid #2c8898; }
+img {
+height: auto;
+max-width: 100%; }
+
+pre {
+background-color: #f1f1f1;
+display: block;
+padding: 1em;
+overflow-x: auto; }
+code {
+font-size: 0.9em;
+padding: 0 0.5em;
+background-color: #f1f1f1;
+white-space: pre-wrap; }
+pre > code {
+padding: 0;
+background-color: transparent;
+white-space: pre; }
+
+table {
+text-align: justify;
+width: 100%;
+border-collapse: collapse; }
+td, th {
+padding: 0.5em;
+border-bottom: 1px solid #f1f1f1; }
+
+input, textarea {
+border: 1px solid #4a4a4a; }
+input:focus, textarea:focus {
+border: 1px solid #2c8898; }
+textarea {
+width: 100%; }
+.button, button, input[type="submit"], input[type="reset"], input[type="button"] {
+display: inline-block;
+padding: 5px 10px;
+text-align: center;
+text-decoration: none;
+white-space: nowrap;
+background-color: #2c8898;
+color: #f9f9f9;
+border-radius: 1px;
+border: 1px solid #2c8898;
+cursor: pointer;
+box-sizing: border-box; }
+.button[disabled], button[disabled], input[type="submit"][disabled], input[type="reset"][disabled], input[type="button"][disabled] {
+cursor: default;
+opacity: .5; }
+.button:focus, .button:hover, button:focus, button:hover, input[type="submit"]:focus, input[type="submit"]:hover, input[type="reset"]:focus, input[type="reset"]:hover, input[type="button"]:focus, input[type="button"]:hover {
+background-color: #982c61;
+border-color: #982c61;
+color: #f9f9f9;
+outline: 0; }
+textarea, select, input[type] {
+color: #4a4a4a;
+padding: 6px 10px;
+
+margin-bottom: 10px;
+background-color: #f1f1f1;
+border: 1px solid #f1f1f1;
+border-radius: 4px;
+box-shadow: none;
+box-sizing: border-box; }
+textarea:focus, select:focus, input[type]:focus {
+border: 1px solid #2c8898;
+outline: 0; }
+input[type="checkbox"]:focus {
+outline: 1px dotted #2c8898; }
+label, legend, fieldset {
+display: block;
+margin-bottom: .5rem;
+font-weight: 600; }
+</style>
+  <style type="text/css">
+nav#TOC {
+border-top: 1px solid #aaa;
+border-bottom: 1px solid #aaa;
+margin: .5em 0;
+}
+nav#TOC::before {
+content: "Table of Contents:";
+font-size: 1.5em;
+}
+nav#TOC ul {
+margin-top: .3em;
+}
+h1.title {
+display: none;
+}
+code.sourceCode.bash span.fu,
+code.sourceCode.bash span.ex {
+color: #bb6688;
+}
+code.sourceCode {
+cursor: text;
+}
+html {
+font-size: 100%;
+overflow-y: scroll;
+-webkit-text-size-adjust: 100%;
+-ms-text-size-adjust: 100%;
+}
+body {
+color: #444;
+font-family: Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
+font-size: 12px;
+line-height: 1.7;
+padding: 1em;
+margin: auto;
+max-width: 914px;
+background: #fefefe;
+}
+a {
+color: #0645ad;
+text-decoration: none;
+}
+a:visited {
+color: #0b0080;
+}
+a:hover {
+color: #06e;
+border-bottom: 1px solid #06e;
+}
+a:active {
+color: #faa700;
+}
+a:focus {
+outline: thin dotted;
+}
+*::-moz-selection {
+background: rgba(255, 255, 0, 0.3);
+color: #000;
+}
+*::selection {
+background: rgba(255, 255, 0, 0.3);
+color: #000;
+}
+a::-moz-selection {
+background: rgba(255, 255, 0, 0.3);
+color: #0645ad;
+}
+a::selection {
+background: rgba(255, 255, 0, 0.3);
+color: #0645ad;
+}
+p {
+margin: 1em 0;
+}
+img {
+max-width: 100%;
+}
+h1, h2, h3, h4, h5, h6 {
+color: #111;
+line-height: 125%;
+margin-top: 2em;
+font-weight: normal;
+}
+h4, h5, h6 {
+font-weight: bold;
+}
+h1 {
+font-size: 2.5em;
+}
+h2 {
+font-size: 2em;
+}
+h3 {
+font-size: 1.5em;
+}
+h4 {
+font-size: 1.2em;
+}
+h5 {
+font-size: 1em;
+}
+h6 {
+font-size: 0.9em;
+}
+blockquote {
+color: #666666;
+margin: 0;
+padding-left: 3em;
+border-left: 0.5em #EEE solid;
+}
+hr {
+display: block;
+height: 2px;
+border: 0;
+border-top: 1px solid #aaa;
+border-bottom: 1px solid #eee;
+margin: 1em 0;
+padding: 0;
+}
+pre, code, kbd, samp {
+color: #000;
+font-family: monospace, monospace;
+_font-family: 'courier new', monospace;
+font-size: 0.98em;
+}
+pre {
+white-space: pre;
+white-space: pre-wrap;
+
+}
+b, strong {
+font-weight: bold;
+}
+dfn {
+font-style: italic;
+}
+ins {
+background: #ff9;
+color: #000;
+text-decoration: none;
+}
+mark {
+background: #ff0;
+color: #000;
+font-style: italic;
+font-weight: bold;
+}
+sub, sup {
+font-size: 75%;
+line-height: 0;
+position: relative;
+vertical-align: baseline;
+}
+sup {
+top: -0.5em;
+}
+sub {
+bottom: -0.25em;
+}
+ul, ol {
+margin: 1em 0;
+padding: 0 0 0 2em;
+}
+li p:last-child {
+margin-bottom: 0;
+}
+ul ul, ol ol {
+margin: .3em 0;
+}
+dl {
+margin-bottom: 1em;
+}
+dt {
+font-weight: bold;
+margin-bottom: .8em;
+}
+dd {
+margin: 0 0 .8em 2em;
+}
+dd:last-child {
+margin-bottom: 0;
+}
+img {
+border: 0;
+-ms-interpolation-mode: bicubic;
+vertical-align: middle;
+}
+figure {
+display: block;
+text-align: center;
+margin: 1em 0;
+}
+figure img {
+border: none;
+margin: 0 auto;
+}
+figcaption {
+font-size: 0.8em;
+font-style: italic;
+margin: 0 0 .8em;
+}
+table {
+margin-bottom: 2em;
+border-bottom: 1px solid #ddd;
+border-right: 1px solid #ddd;
+border-spacing: 0;
+border-collapse: collapse;
+}
+table th {
+padding: .2em 1em;
+background-color: #eee;
+border-top: 1px solid #ddd;
+border-left: 1px solid #ddd;
+}
+table td {
+padding: .2em 1em;
+border-top: 1px solid #ddd;
+border-left: 1px solid #ddd;
+vertical-align: top;
+}
+.author {
+font-size: 1.2em;
+text-align: center;
+}
+@media only screen and (min-width: 480px) {
+body {
+font-size: 14px;
+}
+}
+@media only screen and (min-width: 768px) {
+body {
+font-size: 16px;
+}
+}
+@media print {
+* {
+background: transparent !important;
+color: black !important;
+filter: none !important;
+-ms-filter: none !important;
+}
+body {
+font-size: 12pt;
+max-width: 100%;
+}
+a, a:visited {
+text-decoration: underline;
+}
+hr {
+height: 1px;
+border: 0;
+border-bottom: 1px solid black;
+}
+a[href]:after {
+content: " (" attr(href) ")";
+}
+abbr[title]:after {
+content: " (" attr(title) ")";
+}
+.ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+content: "";
+}
+pre, blockquote {
+border: 1px solid #999;
+padding-right: 1em;
+page-break-inside: avoid;
+}
+tr, img {
+page-break-inside: avoid;
+}
+img {
+max-width: 100% !important;
+}
+@page :left {
+margin: 15mm 20mm 15mm 10mm;
+}
+@page :right {
+margin: 15mm 10mm 15mm 20mm;
+}
+p, h2, h3 {
+orphans: 3;
+widows: 3;
+}
+h2, h3 {
+page-break-after: avoid;
+}
+nav#TOC {
+display: none;
+}
+}
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">RSTT v3.2.1 User Manual</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#rstt-v3.2.1-user-manual" id="toc-rstt-v3.2.1-user-manual">RSTT v3.2.1 User Manual</a>
+<ul>
+<li><a href="#compiling-rstt-from-source" id="toc-compiling-rstt-from-source">Compiling RSTT from source</a>
+<ul>
+<li><a href="#dependencies" id="toc-dependencies">Dependencies</a></li>
+<li><a href="#build-instructions" id="toc-build-instructions">Build
+instructions</a></li>
+</ul></li>
+<li><a href="#usage-examples" id="toc-usage-examples">Usage
+examples</a></li>
+<li><a href="#path-troubleshooting" id="toc-path-troubleshooting">Path
+troubleshooting</a></li>
+<li><a href="#contact-information" id="toc-contact-information">Contact
+Information</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="rstt-v3.2.1-user-manual">RSTT v3.2.1 User Manual</h1>
+<!-- github-style badges/shields -->
+<style type="text/css">p img{height:24px;}</style>
+<p><a href="https://opensource.org/licenses/BSD-3-Clause"><img role="img" aria-label="License" src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNTMiIGhlaWdodD0iMjAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0iTGljZW5zZTogQlNEIDMtQ2xhdXNlIj48dGl0bGU+TGljZW5zZTogQlNEIDMtQ2xhdXNlPC90aXRsZT48bGluZWFyR3JhZGllbnQgaWQ9InMiIHgyPSIwIiB5Mj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjYmJiIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PC9saW5lYXJHcmFkaWVudD48Y2xpcFBhdGggaWQ9InIiPjxyZWN0IHdpZHRoPSIxNTMiIGhlaWdodD0iMjAiIHJ4PSIzIiBmaWxsPSIjZmZmIi8+PC9jbGlwUGF0aD48ZyBjbGlwLXBhdGg9InVybCgjcikiPjxyZWN0IHdpZHRoPSI2OCIgaGVpZ2h0PSIyMCIgZmlsbD0iIzU1NSIvPjxyZWN0IHg9IjY4IiB3aWR0aD0iODUiIGhlaWdodD0iMjAiIGZpbGw9IiMzZGE2MzkiLz48cmVjdCB3aWR0aD0iMTUzIiBoZWlnaHQ9IjIwIiBmaWxsPSJ1cmwoI3MpIi8+PC9nPjxnIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJWZXJkYW5hLEdlbmV2YSxEZWphVnUgU2FucyxzYW5zLXNlcmlmIiB0ZXh0LXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiBmb250LXNpemU9IjExMCI+PGltYWdlIHg9IjUiIHk9IjMiIHdpZHRoPSIxNCIgaGVpZ2h0PSIxNCIgaHJlZj0iZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCNGJXeHVjejBpYUhSMGNEb3ZMM2QzZHk1M015NXZjbWN2TWpBd01DOXpkbWNpSUhacFpYZENiM2c5SWpBZ01DQXlOQ0F5TXk0eUlqNDhaR1ZtY3k4K1BIQmhkR2dnWm1sc2JEMGlJMlZsWlNJZ1pEMGlUVEFnTVRJdU1VTXVNU0ExTGpVZ05DNDNMamdnTVRBdU5DNHhZell1TnkwdU9TQXhNaTQwSURNdU55QXhNeTQxSURrdU55QXhJRFV1T0MweUxqRWdNVEV1TVMwM0xqTWdNVE11TXkwdU5DNHlMUzQzTGpFdExqa3RMalJNTVRNZ01UWmpMUzR4TFM0MElEQXRMall1TXkwdU9DQXhMakl0TGpVZ01TNDVMVEV1TkNBeUxqRXRNaTQzTGpNdE1TNDVMVEV0TXk0M0xUSXVPUzAwYUMwdU1tTXRNUzQ0TFM0eUxUTXVOU0F4TGpFdE15NDRJREl1T1MwdU15QXhMall1TlNBekxqRWdNaUF6TGpndU5TNHlMall1TkM0MExqbHNMVEl1TmlBMkxqaGpMUzR4TGpNdExqUXVOUzB1T0M0ekxUSXVOeTB4TGpFdE5TMHpMakV0Tmk0ekxUVXVPRU11TVNBeE5TQXVNU0F4TXk0eElEQWdNVEl1TVhvaUx6NDhMM04yWno0PSIvPjx0ZXh0IGFyaWEtaGlkZGVuPSJ0cnVlIiB4PSI0MzUiIHk9IjE1MCIgZmlsbD0iIzAxMDEwMSIgZmlsbC1vcGFjaXR5PSIuMyIgdHJhbnNmb3JtPSJzY2FsZSguMSkiIHRleHRMZW5ndGg9IjQxMCI+TGljZW5zZTwvdGV4dD48dGV4dCB4PSI0MzUiIHk9IjE0MCIgdHJhbnNmb3JtPSJzY2FsZSguMSkiIGZpbGw9IiNmZmYiIHRleHRMZW5ndGg9IjQxMCI+TGljZW5zZTwvdGV4dD48dGV4dCBhcmlhLWhpZGRlbj0idHJ1ZSIgeD0iMTA5NSIgeT0iMTUwIiBmaWxsPSIjMDEwMTAxIiBmaWxsLW9wYWNpdHk9Ii4zIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgdGV4dExlbmd0aD0iNzUwIj5CU0QgMy1DbGF1c2U8L3RleHQ+PHRleHQgeD0iMTA5NSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iNzUwIj5CU0QgMy1DbGF1c2U8L3RleHQ+PC9nPjwvc3ZnPg==" alt="License" /></a> <img role="img" aria-label="C++" src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4NSIgaGVpZ2h0PSIyMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJDKys6IDExKyI+PHRpdGxlPkMrKzogMTErPC90aXRsZT48bGluZWFyR3JhZGllbnQgaWQ9InMiIHgyPSIwIiB5Mj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjYmJiIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PC9saW5lYXJHcmFkaWVudD48Y2xpcFBhdGggaWQ9InIiPjxyZWN0IHdpZHRoPSI4NSIgaGVpZ2h0PSIyMCIgcng9IjMiIGZpbGw9IiNmZmYiLz48L2NsaXBQYXRoPjxnIGNsaXAtcGF0aD0idXJsKCNyKSI+PHJlY3Qgd2lkdGg9IjUyIiBoZWlnaHQ9IjIwIiBmaWxsPSIjNTU1Ii8+PHJlY3QgeD0iNTIiIHdpZHRoPSIzMyIgaGVpZ2h0PSIyMCIgZmlsbD0iIzEwNjlhYyIvPjxyZWN0IHdpZHRoPSI4NSIgaGVpZ2h0PSIyMCIgZmlsbD0idXJsKCNzKSIvPjwvZz48ZyBmaWxsPSIjZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iVmVyZGFuYSxHZW5ldmEsRGVqYVZ1IFNhbnMsc2Fucy1zZXJpZiIgdGV4dC1yZW5kZXJpbmc9Imdlb21ldHJpY1ByZWNpc2lvbiIgZm9udC1zaXplPSIxMTAiPjxpbWFnZSB4PSI1IiB5PSIzIiB3aWR0aD0iMTQiIGhlaWdodD0iMTQiIGhyZWY9ImRhdGE6aW1hZ2Uvc3ZnK3htbDtiYXNlNjQsUEhOMlp5Qm1hV3hzUFNKM2FHbDBaWE50YjJ0bElpQnliMnhsUFNKcGJXY2lJSFpwWlhkQ2IzZzlJakFnTUNBeU5DQXlOQ0lnZUcxc2JuTTlJbWgwZEhBNkx5OTNkM2N1ZHpNdWIzSm5Mekl3TURBdmMzWm5JajQ4ZEdsMGJHVStReXNyUEM5MGFYUnNaVDQ4Y0dGMGFDQmtQU0pOTWpJdU16azBJRFpqTFM0eE5qY3RMakk1TFM0ek9UZ3RMalUwTXkwdU5qVXlMUzQyT1V3eE1pNDVNall1TWpKakxTNDFNRGt0TGpJNU5DMHhMak0wTFM0eU9UUXRNUzQ0TkRnZ01Fd3lMakkySURVdU16RmpMUzQxTURndU1qa3pMUzQ1TWpNZ01TNHdNVE10TGpreU15QXhMaloyTVRBdU1UaGpNQ0F1TWprMExqRXdOQzQyTWk0eU56RXVPVEV1TVRZM0xqSTVMak01T0M0MU5ETXVOalV5TGpZNWJEZ3VPREUySURVdU1EbGpMalV3T0M0eU9UTWdNUzR6TkM0eU9UTWdNUzQ0TkRnZ01HdzRMamd4TmkwMUxqQTVZeTR5TlRRdExqRTBOeTQwT0RVdExqUXVOalV5TFM0Mk9TNHhOamN0TGpJNUxqSTNMUzQyTVRZdU1qY3RMamt4VmpZdU9URmpMakF3TXkwdU1qazBMUzR4TFM0Mk1pMHVNalk0TFM0NU1YcE5NVElnTVRrdU1URmpMVE11T1RJZ01DMDNMakV3T1MwekxqRTVMVGN1TVRBNUxUY3VNVEVnTUMwekxqa3lJRE11TVRrdE55NHhNU0EzTGpFeExUY3VNVEZoTnk0eE16TWdOeTR4TXpNZ01DQXdNVFl1TVRVMklETXVOVFV6YkMwekxqQTNOaUF4TGpjNFlUTXVOVFkzSURNdU5UWTNJREFnTURBdE15NHdPQzB4TGpjNFFUTXVOVFlnTXk0MU5pQXdJREF3T0M0ME5EUWdNVElnTXk0MU5pQXpMalUySURBZ01EQXhNaUF4TlM0MU5UVmhNeTQxTnlBekxqVTNJREFnTURBekxqQTRMVEV1TnpjNGJETXVNRGM0SURFdU56aEJOeTR4TXpVZ055NHhNelVnTUNBd01URXlJREU1TGpFeGVtMDNMakV4TFRZdU56RTFhQzB1TnpsMkxqYzVhQzB1TnpsMkxTNDNPV2d0TGpjNWRpMHVOemxvTGpjNWRpMHVOemxvTGpjNWRpNDNPV2d1TnpsNmJUSXVPVFl5SURCb0xTNDNPWFl1Tnpsb0xTNDNPWFl0TGpjNWFDMHVOemwyTFM0M09XZ3VOemwyTFM0M09XZ3VOemwyTGpjNWFDNDNPWG9pTHo0OEwzTjJaejQ9Ii8+PHRleHQgYXJpYS1oaWRkZW49InRydWUiIHg9IjM1NSIgeT0iMTUwIiBmaWxsPSIjMDEwMTAxIiBmaWxsLW9wYWNpdHk9Ii4zIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgdGV4dExlbmd0aD0iMjUwIj5DKys8L3RleHQ+PHRleHQgeD0iMzU1IiB5PSIxNDAiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiBmaWxsPSIjZmZmIiB0ZXh0TGVuZ3RoPSIyNTAiPkMrKzwvdGV4dD48dGV4dCBhcmlhLWhpZGRlbj0idHJ1ZSIgeD0iNjc1IiB5PSIxNTAiIGZpbGw9IiMwMTAxMDEiIGZpbGwtb3BhY2l0eT0iLjMiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiB0ZXh0TGVuZ3RoPSIyMzAiPjExKzwvdGV4dD48dGV4dCB4PSI2NzUiIHk9IjE0MCIgdHJhbnNmb3JtPSJzY2FsZSguMSkiIGZpbGw9IiNmZmYiIHRleHRMZW5ndGg9IjIzMCI+MTErPC90ZXh0PjwvZz48L3N2Zz4=" alt="C++" /> <img role="img" aria-label="C" src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NyIgaGVpZ2h0PSIyMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJDOiA5OSsiPjx0aXRsZT5DOiA5OSs8L3RpdGxlPjxsaW5lYXJHcmFkaWVudCBpZD0icyIgeDI9IjAiIHkyPSIxMDAlIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNiYmIiIHN0b3Atb3BhY2l0eT0iLjEiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3Atb3BhY2l0eT0iLjEiLz48L2xpbmVhckdyYWRpZW50PjxjbGlwUGF0aCBpZD0iciI+PHJlY3Qgd2lkdGg9IjY3IiBoZWlnaHQ9IjIwIiByeD0iMyIgZmlsbD0iI2ZmZiIvPjwvY2xpcFBhdGg+PGcgY2xpcC1wYXRoPSJ1cmwoI3IpIj48cmVjdCB3aWR0aD0iMzQiIGhlaWdodD0iMjAiIGZpbGw9IiM1NTUiLz48cmVjdCB4PSIzNCIgd2lkdGg9IjMzIiBoZWlnaHQ9IjIwIiBmaWxsPSIjNzk5MWI1Ii8+PHJlY3Qgd2lkdGg9IjY3IiBoZWlnaHQ9IjIwIiBmaWxsPSJ1cmwoI3MpIi8+PC9nPjxnIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJWZXJkYW5hLEdlbmV2YSxEZWphVnUgU2FucyxzYW5zLXNlcmlmIiB0ZXh0LXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiBmb250LXNpemU9IjExMCI+PGltYWdlIHg9IjUiIHk9IjMiIHdpZHRoPSIxNCIgaGVpZ2h0PSIxNCIgaHJlZj0iZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCbWFXeHNQU0lqWldWbElpQnliMnhsUFNKcGJXY2lJSFpwWlhkQ2IzZzlJakFnTUNBeU5DQXlOQ0lnZUcxc2JuTTlJbWgwZEhBNkx5OTNkM2N1ZHpNdWIzSm5Mekl3TURBdmMzWm5JajQ4ZEdsMGJHVStRend2ZEdsMGJHVStQSEJoZEdnZ1pEMGlUVEUyTGpVNU1qRWdPUzR4T1RZeWN5MHVNelUwTFRNdU1qazRMVE11TmpJM0xUTXVNemxqTFRNdU1qYzBNUzB1TURrdE5DNDVOVFV5SURJdU5EYzBMVFF1T1RVMU1pQTJMakUwSURBZ015NDJOalV4SURFdU9EVTRJRFl1TlRrM01pQTFMakEwTlRFZ05pNDFPVGN5SURNdU1UZzBJREFnTXk0MU16Z3hMVE11TmpZMUlETXVOVE00TVMwekxqWTJOV3cyTGpFd05ERXVNelkxY3k0ek5pQXpMak14TFRJdU1UazJJRFV1T0RNMll5MHlMalUxTWlBeUxqVXlOREV0TlM0Mk9UQXhJREl1T1RNM01TMDNMamczTmpJZ01pNDVNakF4TFRJdU1Ua3RMakF4TnkwMUxqSXlOakV1TURNMExUZ3VNVFl3TWkweUxqazNMVEl1T1RNNExUTXVNREV3TVMwekxqUXpOaTAxTGprek1ESXRNeTQwTXpZdE9DNDRNREF5SURBdE1pNDROekF4TGpVMU5pMDJMalkzTURJZ05DNHdORGN0T1M0MU5UQXlRemN1TkRRMExqY3lJRGt1T0RRNUlEQWdNVEl1TWpVMElEQmpNVEF1TURReU1pQXdJREV3TGpjeE56SWdPUzR5TmpBeUlERXdMamN4TnpJZ09TNHlOakF5ZWlJdlBqd3ZjM1puUGc9PSIvPjx0ZXh0IGFyaWEtaGlkZGVuPSJ0cnVlIiB4PSIyNjUiIHk9IjE1MCIgZmlsbD0iIzAxMDEwMSIgZmlsbC1vcGFjaXR5PSIuMyIgdHJhbnNmb3JtPSJzY2FsZSguMSkiIHRleHRMZW5ndGg9IjcwIj5DPC90ZXh0Pjx0ZXh0IHg9IjI2NSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iNzAiPkM8L3RleHQ+PHRleHQgYXJpYS1oaWRkZW49InRydWUiIHg9IjQ5NSIgeT0iMTUwIiBmaWxsPSIjMDEwMTAxIiBmaWxsLW9wYWNpdHk9Ii4zIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgdGV4dExlbmd0aD0iMjMwIj45OSs8L3RleHQ+PHRleHQgeD0iNDk1IiB5PSIxNDAiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiBmaWxsPSIjZmZmIiB0ZXh0TGVuZ3RoPSIyMzAiPjk5KzwvdGV4dD48L2c+PC9zdmc+" alt="C" /> <img role="img" aria-label="Fortran" src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDEiIGhlaWdodD0iMjAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0iRm9ydHJhbjogOTArIj48dGl0bGU+Rm9ydHJhbjogOTArPC90aXRsZT48bGluZWFyR3JhZGllbnQgaWQ9InMiIHgyPSIwIiB5Mj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjYmJiIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PC9saW5lYXJHcmFkaWVudD48Y2xpcFBhdGggaWQ9InIiPjxyZWN0IHdpZHRoPSIxMDEiIGhlaWdodD0iMjAiIHJ4PSIzIiBmaWxsPSIjZmZmIi8+PC9jbGlwUGF0aD48ZyBjbGlwLXBhdGg9InVybCgjcikiPjxyZWN0IHdpZHRoPSI2OCIgaGVpZ2h0PSIyMCIgZmlsbD0iIzU1NSIvPjxyZWN0IHg9IjY4IiB3aWR0aD0iMzMiIGhlaWdodD0iMjAiIGZpbGw9IiM3NDRlOTciLz48cmVjdCB3aWR0aD0iMTAxIiBoZWlnaHQ9IjIwIiBmaWxsPSJ1cmwoI3MpIi8+PC9nPjxnIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJWZXJkYW5hLEdlbmV2YSxEZWphVnUgU2FucyxzYW5zLXNlcmlmIiB0ZXh0LXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiBmb250LXNpemU9IjExMCI+PGltYWdlIHg9IjUiIHk9IjMiIHdpZHRoPSIxNCIgaGVpZ2h0PSIxNCIgaHJlZj0iZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCeWIyeGxQU0pwYldjaUlIWnBaWGRDYjNnOUlqQWdNQ0F5TkNBeU5DSWdlRzFzYm5NOUltaDBkSEE2THk5M2QzY3Vkek11YjNKbkx6SXdNREF2YzNabklqNDhjR0YwYUNCa1BTSk5MamczTlNBeU1TNHpOalZvTVM0NU5qbGpNUzR3T1RFZ01DQXlMakUyTlMwdU5qRTNJREl1TVRZMUxUSXVNVFE1VmpRdU56ZzBZekF0TVM0NU5ESXRMalkwT0MweUxqRTFMVEl1TmpVNUxUSXVNVFZJTGprNU9GWXdhREl5TGpFeU4zWTVMalUzTldndE1pNDFPR013TFRJdU1qZzRMUzR5TmpFdE15NDVOaTB1T1RFMUxUVXVNakEzTFM0M01pMHhMak00TnkweUxqRTVOUzB4TGpjek15MDBMamMzT1MweExqY3pNMGc1TGpVNWRqY3VOak0wYURFdU1ESmpNaTQ1T0RJZ01DQXpMamMzTWkwdU56UTJJRE11TnpFdE5DNDNNak5vTWk0ek1qZDJNVEl1TXpnNFNERTBMak15WXkwdU1qQTRMVE11T1RnM0xTNDBNekV0TlM0ME1TMDBMakUyT0MwMUxqTTJObWd0TGpZeU5IWTJMalkwT0dNd0lERXVPVFF4TGpnd05TQXlMakUxSURJdU9ERTJJREl1TVRWb01TNDBORFZXTWpSSUxqZzNOWFl0TWk0Mk16VjZJaUJtYVd4c1BTSWpaV1ZsSWk4K1BDOXpkbWMrIi8+PHRleHQgYXJpYS1oaWRkZW49InRydWUiIHg9IjQzNSIgeT0iMTUwIiBmaWxsPSIjMDEwMTAxIiBmaWxsLW9wYWNpdHk9Ii4zIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgdGV4dExlbmd0aD0iNDEwIj5Gb3J0cmFuPC90ZXh0Pjx0ZXh0IHg9IjQzNSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iNDEwIj5Gb3J0cmFuPC90ZXh0Pjx0ZXh0IGFyaWEtaGlkZGVuPSJ0cnVlIiB4PSI4MzUiIHk9IjE1MCIgZmlsbD0iIzAxMDEwMSIgZmlsbC1vcGFjaXR5PSIuMyIgdHJhbnNmb3JtPSJzY2FsZSguMSkiIHRleHRMZW5ndGg9IjIzMCI+OTArPC90ZXh0Pjx0ZXh0IHg9IjgzNSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iMjMwIj45MCs8L3RleHQ+PC9nPjwvc3ZnPg==" alt="Fortran" /> <img role="img" aria-label="Java" src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI3NyIgaGVpZ2h0PSIyMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJKYXZhOiA4KyI+PHRpdGxlPkphdmE6IDgrPC90aXRsZT48bGluZWFyR3JhZGllbnQgaWQ9InMiIHgyPSIwIiB5Mj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjYmJiIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PC9saW5lYXJHcmFkaWVudD48Y2xpcFBhdGggaWQ9InIiPjxyZWN0IHdpZHRoPSI3NyIgaGVpZ2h0PSIyMCIgcng9IjMiIGZpbGw9IiNmZmYiLz48L2NsaXBQYXRoPjxnIGNsaXAtcGF0aD0idXJsKCNyKSI+PHJlY3Qgd2lkdGg9IjUyIiBoZWlnaHQ9IjIwIiBmaWxsPSIjNTU1Ii8+PHJlY3QgeD0iNTIiIHdpZHRoPSIyNSIgaGVpZ2h0PSIyMCIgZmlsbD0iI2IwNzIxOSIvPjxyZWN0IHdpZHRoPSI3NyIgaGVpZ2h0PSIyMCIgZmlsbD0idXJsKCNzKSIvPjwvZz48ZyBmaWxsPSIjZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iVmVyZGFuYSxHZW5ldmEsRGVqYVZ1IFNhbnMsc2Fucy1zZXJpZiIgdGV4dC1yZW5kZXJpbmc9Imdlb21ldHJpY1ByZWNpc2lvbiIgZm9udC1zaXplPSIxMTAiPjxpbWFnZSB4PSI1IiB5PSIzIiB3aWR0aD0iMTQiIGhlaWdodD0iMTQiIGhyZWY9ImRhdGE6aW1hZ2Uvc3ZnK3htbDtiYXNlNjQsUEhOMlp5QjRiV3h1Y3owaWFIUjBjRG92TDNkM2R5NTNNeTV2Y21jdk1qQXdNQzl6ZG1jaUlIWnBaWGRDYjNnOUlqQWdNQ0F5TkNBeU5DSStQR2NnWm1sc2JEMGlJMlZsWlNJK1BIQmhkR2dnWkQwaVRUa3VPQ0F4TlM0MVl6TXVNUzR4SURVdU9TMHVOQ0E0TGpRdE1TNDNMVEV1TXk0eUxUTXVOaTQzTFRZdU1TNDRJRGN1TVMwekxqWXRNeTQ0TFRRdU9TQTFMalV0T1M0MExTNHhJREF0TGpNdExqRXRMalF0TGpFdE1TNDVMakl0Tnk0M0lETXVNeTAwTGpJZ05pNDJJREV1TVNBeExqSXRMak1nTWk0MExURWdNaTQ1TFRJZ0xqRXRNeTQzTGpJdE5DNDVMUzR5ZGkwdU1XTXVNeTB1TXlBeUxqUXRMamtnTXk0eUxURXRNUzQzTFM0ekxUUXVOQzQwTFRVZ01TNHhMUzR5TGpFdExqSXVNaTB1TVM0ekxqSXVOU0F4TGpRdU9DQTBMall1T0hvaUx6NDhjR0YwYUNCa1BTSk5NVEl1TXlBeE15NDVZeTB1TmkweExqWXRNaTB5TGpndE1pNHlMVFF1TVZZNUxqSmpMakV0TGpjdU55MHhMalFnTVM0NExUSXVOQ0F5TGpjdE1TNDVJRFF0TlNBeExqa3ROaTQ0SURJZ05pNDVMVEV4TGpJZ05pNDBMVEV1TlNBeE15NDVlbTA0TGpRZ04wTXhPUzR6SURJMElEZ3VPQ0F5TXk0MElEWXVOQ0F5TTJ3dExqVXRMakV1TXk0eUxTNHlMakZqTVNBdU1TNDRMalVnTXk0NExqY3VOeUF3SURFdU5pNHhJREl1TkM0eElEUXVNaTB1TVNBNExqZ3RMak1nT0M0MUxUTXVNWHB0TFRNdU9TMHpMalJ6TFM0eExqRXRMakV1TW5ZdU0yTTJMamN0TVM0eklETXVOQzAzTGpJdU15MDBJRE11TVMweExqUWdNeTR5SURJdU1pMHVNaUF6TGpWNmJTMDJMamt1Tm1NdE5DNHhMamN0TVM0NElESXVOeUF4TGpZZ01pNDFJREV1TkNBd0lETXVNUzB1TXlBMExqVXRNUzB1TmkwdU1pMHhMall0TGpjdE1TNDJMUzQ0TFRFdU5DNDFMVGdnTGprdE5DNDFMUzQzZWlJdlBqeHdZWFJvSUdROUlrMHhPQzR4SURFNUxqbGpOQzR5SURJdU55MHhNaTQySURJdU15MHhNeTR5SURFdU15NHlMUzQwSURJdU1TMHVPQ0F5TGpZdExqWXRMamd0TGprdE1pNDNMUzR6TFRNdU9TNDBMUzR4TGpJdExqSXVNeTB1TXk0MUxTNHhMakV0TGpFdU15QXdJQzQwTGpZZ01TNHpJRFl1TlM0NUlEY3VOQ0F4TGpFZ05TNHpMUzR5SURFeExqY3RNUzR6SURjdU5DMHpMakY2VFRFMklERTNZeTB1TmkwdU1pMHVPUzB1TlMweExTNDJMVEV1T0M0MExUa3VNaUF4TGpFdE5pMHVPUzB6TGpndU9TMHlJREl1TmlBeExqWWdNaTQwSURJZ01DQTBMakV0TGpNZ05TNDRMUzQ0VERFMklERTNlaUl2UGp3dlp6NDhMM04yWno0PSIvPjx0ZXh0IGFyaWEtaGlkZGVuPSJ0cnVlIiB4PSIzNTUiIHk9IjE1MCIgZmlsbD0iIzAxMDEwMSIgZmlsbC1vcGFjaXR5PSIuMyIgdHJhbnNmb3JtPSJzY2FsZSguMSkiIHRleHRMZW5ndGg9IjI1MCI+SmF2YTwvdGV4dD48dGV4dCB4PSIzNTUiIHk9IjE0MCIgdHJhbnNmb3JtPSJzY2FsZSguMSkiIGZpbGw9IiNmZmYiIHRleHRMZW5ndGg9IjI1MCI+SmF2YTwvdGV4dD48dGV4dCBhcmlhLWhpZGRlbj0idHJ1ZSIgeD0iNjM1IiB5PSIxNTAiIGZpbGw9IiMwMTAxMDEiIGZpbGwtb3BhY2l0eT0iLjMiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiB0ZXh0TGVuZ3RoPSIxNTAiPjgrPC90ZXh0Pjx0ZXh0IHg9IjYzNSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iMTUwIj44KzwvdGV4dD48L2c+PC9zdmc+" alt="Java" /> <img role="img" aria-label="Python" src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDMiIGhlaWdodD0iMjAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0iUHl0aG9uOiAzLjYrIj48dGl0bGU+UHl0aG9uOiAzLjYrPC90aXRsZT48bGluZWFyR3JhZGllbnQgaWQ9InMiIHgyPSIwIiB5Mj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjYmJiIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PC9saW5lYXJHcmFkaWVudD48Y2xpcFBhdGggaWQ9InIiPjxyZWN0IHdpZHRoPSIxMDMiIGhlaWdodD0iMjAiIHJ4PSIzIiBmaWxsPSIjZmZmIi8+PC9jbGlwUGF0aD48ZyBjbGlwLXBhdGg9InVybCgjcikiPjxyZWN0IHdpZHRoPSI2NiIgaGVpZ2h0PSIyMCIgZmlsbD0iIzU1NSIvPjxyZWN0IHg9IjY2IiB3aWR0aD0iMzciIGhlaWdodD0iMjAiIGZpbGw9IiNmY2M2MjQiLz48cmVjdCB3aWR0aD0iMTAzIiBoZWlnaHQ9IjIwIiBmaWxsPSJ1cmwoI3MpIi8+PC9nPjxnIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJWZXJkYW5hLEdlbmV2YSxEZWphVnUgU2FucyxzYW5zLXNlcmlmIiB0ZXh0LXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiBmb250LXNpemU9IjExMCI+PGltYWdlIHg9IjUiIHk9IjMiIHdpZHRoPSIxNCIgaGVpZ2h0PSIxNCIgaHJlZj0iZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCbWFXeHNQU0lqWldWbElpQnliMnhsUFNKcGJXY2lJSFpwWlhkQ2IzZzlJakFnTUNBeU5DQXlOQ0lnZUcxc2JuTTlJbWgwZEhBNkx5OTNkM2N1ZHpNdWIzSm5Mekl3TURBdmMzWm5JajQ4ZEdsMGJHVStVSGwwYUc5dVBDOTBhWFJzWlQ0OGNHRjBhQ0JrUFNKTk1UUXVNalV1TVRoc0xqa3VNaTQzTXk0eU5pNDFPUzR6TGpRMUxqTXlMak0wTGpNMExqSTFMak0wTGpFMkxqTXpMakV1TXk0d05DNHlOaTR3TWk0eUxTNHdNUzR4TTFZNExqVnNMUzR3TlM0Mk15MHVNVE11TlRVdExqSXhMalEyTFM0eU5pNHpPQzB1TXk0ek1TMHVNek11TWpVdExqTTFMakU1TFM0ek5TNHhOQzB1TXpNdU1TMHVNeTR3TnkwdU1qWXVNRFF0TGpJeExqQXlTRGd1Tnpkc0xTNDJPUzR3TlMwdU5Ua3VNVFF0TGpVdU1qSXRMalF4TGpJM0xTNHpNeTR6TWkwdU1qY3VNelV0TGpJdU16WXRMakUxTGpNM0xTNHhMak0xTFM0d055NHpNaTB1TURRdU1qY3RMakF5TGpJeGRqTXVNRFpJTXk0eE4yd3RMakl4TFM0d015MHVNamd0TGpBM0xTNHpNaTB1TVRJdExqTTFMUzR4T0MwdU16WXRMakkyTFM0ek5pMHVNell0TGpNMUxTNDBOaTB1TXpJdExqVTVMUzR5T0MwdU56TXRMakl4TFM0NE9DMHVNVFF0TVM0d05TMHVNRFV0TVM0eU15NHdOaTB4TGpJeUxqRTJMVEV1TURRdU1qUXRMamczTGpNeUxTNDNNUzR6TmkwdU5UY3VOQzB1TkRRdU5ESXRMak16TGpReUxTNHlOQzQwTFM0eE5pNHpOaTB1TVM0ek1pMHVNRFV1TWpRdExqQXhhQzR4Tm13dU1EWXVNREZvT0M0eE5uWXRMamd6U0RZdU1UaHNMUzR3TVMweUxqYzFMUzR3TWkwdU16Y3VNRFV0TGpNMExqRXhMUzR6TVM0eE55MHVNamd1TWpVdExqSTJMak14TFM0eU15NHpPQzB1TWk0ME5DMHVNVGd1TlRFdExqRTFMalU0TFM0eE1pNDJOQzB1TVM0M01TMHVNRFl1TnpjdExqQTBMamcwTFM0d01pQXhMakkzTGpBMWVtMHROaTR6SURFdU9UaHNMUzR5TXk0ek15MHVNRGd1TkRFdU1EZ3VOREV1TWpNdU16UXVNek11TWpJdU5ERXVNRGt1TkRFdExqQTVMak16TFM0eU1pNHlNeTB1TXpRdU1EZ3RMalF4TFM0d09DMHVOREV0TGpJekxTNHpNeTB1TXpNdExqSXlMUzQwTVMwdU1Ea3RMalF4TGpBNWVtMHhNeTR3T1NBekxqazFiQzR5T0M0d05pNHpNaTR4TWk0ek5TNHhPQzR6Tmk0eU55NHpOaTR6TlM0ek5TNDBOeTR6TWk0MU9TNHlPQzQzTXk0eU1TNDRPQzR4TkNBeExqQTBMakExSURFdU1qTXRMakEySURFdU1qTXRMakUySURFdU1EUXRMakkwTGpnMkxTNHpNaTQzTVMwdU16WXVOVGN0TGpRdU5EVXRMalF5TGpNekxTNDBNaTR5TkMwdU5DNHhOaTB1TXpZdU1Ea3RMak15TGpBMUxTNHlOQzR3TWkwdU1UWXRMakF4YUMwNExqSXlkaTQ0TW1nMUxqZzBiQzR3TVNBeUxqYzJMakF5TGpNMkxTNHdOUzR6TkMwdU1URXVNekV0TGpFM0xqSTVMUzR5TlM0eU5TMHVNekV1TWpRdExqTTRMakl0TGpRMExqRTNMUzQxTVM0eE5TMHVOVGd1TVRNdExqWTBMakE1TFM0M01TNHdOeTB1TnpjdU1EUXRMamcwTGpBeExURXVNamN0TGpBMExURXVNRGN0TGpFMExTNDVMUzR5TFM0M015MHVNalV0TGpVNUxTNHpMUzQwTlMwdU16TXRMak0wTFM0ek5DMHVNalV0TGpNMExTNHhOaTB1TXpNdExqRXRMak10TGpBMExTNHlOUzB1TURJdExqSXVNREV0TGpFemRpMDFMak0wYkM0d05TMHVOalF1TVRNdExqVTBMakl4TFM0ME5pNHlOaTB1TXpndU15MHVNekl1TXpNdExqSTBMak0xTFM0eUxqTTFMUzR4TkM0ek15MHVNUzR6TFM0d05pNHlOaTB1TURRdU1qRXRMakF5TGpFekxTNHdNV2cxTGpnMGJDNDJPUzB1TURVdU5Ua3RMakUwTGpVdExqSXhMalF4TFM0eU9DNHpNeTB1TXpJdU1qY3RMak0xTGpJdExqTTJMakUxTFM0ek5pNHhMUzR6TlM0d055MHVNekl1TURRdExqSTRMakF5TFM0eU1WWTJMakEzYURJdU1EbHNMakUwTGpBeGVtMHROaTQwTnlBeE5DNHlOV3d0TGpJekxqTXpMUzR3T0M0ME1TNHdPQzQwTVM0eU15NHpNeTR6TXk0eU15NDBNUzR3T0M0ME1TMHVNRGd1TXpNdExqSXpMakl6TFM0ek15NHdPQzB1TkRFdExqQTRMUzQwTVMwdU1qTXRMak16TFM0ek15MHVNak10TGpReExTNHdPQzB1TkRFdU1EaDZJaTgrUEM5emRtYysiLz48dGV4dCBhcmlhLWhpZGRlbj0idHJ1ZSIgeD0iNDI1IiB5PSIxNTAiIGZpbGw9IiMwMTAxMDEiIGZpbGwtb3BhY2l0eT0iLjMiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiB0ZXh0TGVuZ3RoPSIzOTAiPlB5dGhvbjwvdGV4dD48dGV4dCB4PSI0MjUiIHk9IjE0MCIgdHJhbnNmb3JtPSJzY2FsZSguMSkiIGZpbGw9IiNmZmYiIHRleHRMZW5ndGg9IjM5MCI+UHl0aG9uPC90ZXh0Pjx0ZXh0IGFyaWEtaGlkZGVuPSJ0cnVlIiB4PSI4MzUiIHk9IjE1MCIgZmlsbD0iI2NjYyIgZmlsbC1vcGFjaXR5PSIuMyIgdHJhbnNmb3JtPSJzY2FsZSguMSkiIHRleHRMZW5ndGg9IjI3MCI+My42KzwvdGV4dD48dGV4dCB4PSI4MzUiIHk9IjE0MCIgdHJhbnNmb3JtPSJzY2FsZSguMSkiIGZpbGw9IiMzMzMiIHRleHRMZW5ndGg9IjI3MCI+My42KzwvdGV4dD48L2c+PC9zdmc+" alt="Python" /></p>
+<p>Tested on:</p>
+<p><a href="https://www.apple.com/"><img role="img" aria-label="MacOS" src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMzEiIGhlaWdodD0iMjAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0iTWFjT1M6IHg4NiAvIEFSTSI+PHRpdGxlPk1hY09TOiB4ODYgLyBBUk08L3RpdGxlPjxsaW5lYXJHcmFkaWVudCBpZD0icyIgeDI9IjAiIHkyPSIxMDAlIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNiYmIiIHN0b3Atb3BhY2l0eT0iLjEiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3Atb3BhY2l0eT0iLjEiLz48L2xpbmVhckdyYWRpZW50PjxjbGlwUGF0aCBpZD0iciI+PHJlY3Qgd2lkdGg9IjEzMSIgaGVpZ2h0PSIyMCIgcng9IjMiIGZpbGw9IiNmZmYiLz48L2NsaXBQYXRoPjxnIGNsaXAtcGF0aD0idXJsKCNyKSI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjIwIiBmaWxsPSIjNTU1Ii8+PHJlY3QgeD0iNjQiIHdpZHRoPSI2NyIgaGVpZ2h0PSIyMCIgZmlsbD0iIzk5OTk5OSIvPjxyZWN0IHdpZHRoPSIxMzEiIGhlaWdodD0iMjAiIGZpbGw9InVybCgjcykiLz48L2c+PGcgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IlZlcmRhbmEsR2VuZXZhLERlamFWdSBTYW5zLHNhbnMtc2VyaWYiIHRleHQtcmVuZGVyaW5nPSJnZW9tZXRyaWNQcmVjaXNpb24iIGZvbnQtc2l6ZT0iMTEwIj48aW1hZ2UgeD0iNSIgeT0iMyIgd2lkdGg9IjE0IiBoZWlnaHQ9IjE0IiBocmVmPSJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBITjJaeUJtYVd4c1BTSWpaV1ZsSWlCeWIyeGxQU0pwYldjaUlIWnBaWGRDYjNnOUlqQWdNQ0F5TkNBeU5DSWdlRzFzYm5NOUltaDBkSEE2THk5M2QzY3Vkek11YjNKbkx6SXdNREF2YzNabklqNDhkR2wwYkdVK1FYQndiR1U4TDNScGRHeGxQanh3WVhSb0lHUTlJazB4TWk0eE5USWdOaTQ0T1RaakxTNDVORGdnTUMweUxqUXhOUzB4TGpBM09DMHpMamsyTFRFdU1EUXRNaTR3TkM0d01qY3RNeTQ1TVNBeExqRTRNeTAwTGprMk1TQXpMakF4TkMweUxqRXhOeUF6TGpZM05TMHVOVFEySURrdU1UQXpJREV1TlRFNUlERXlMakE1SURFdU1ERXpJREV1TkRVMElESXVNakE0SURNdU1Ea2dNeTQzT1RJZ015NHdNemtnTVM0MU1pMHVNRFkxSURJdU1Ea3RMams0TnlBekxqa3pOUzB1T1RnM0lERXVPRE14SURBZ01pNHpOUzQ1T0RjZ015NDVOaTQ1TkRnZ01TNDJNemN0TGpBeU5pQXlMalkzTmkweExqUTRJRE11TmpjMkxUSXVPVFE0SURFdU1UVTJMVEV1TmpnNElERXVOak0yTFRNdU16STFJREV1TmpZeUxUTXVOREUxTFM0d016a3RMakF4TXkwekxqRTRNaTB4TGpJeU1TMHpMakl5TFRRdU9EVTNMUzR3TWpZdE15NHdOQ0F5TGpRNExUUXVORGswSURJdU5UazNMVFF1TlRVNUxURXVOREk1TFRJdU1Ea3RNeTQyTWpNdE1pNHpNalF0TkM0ek9TMHlMak0zTmkweUxTNHhOVFl0TXk0Mk56VWdNUzR3T1MwMExqWXhJREV1TURsNlRURTFMalV6SURNdU9ETmpMamcwTXkweExqQXhNaUF4TGpRdE1pNDBNamNnTVM0eU5EVXRNeTQ0TXkweExqSXdOeTR3TlRJdE1pNDJOakl1T0RBMUxUTXVOVE15SURFdU9ERTRMUzQzT0M0NE9UWXRNUzQwTlRRZ01pNHpNemd0TVM0eU56TWdNeTQzTVRRZ01TNHpNemd1TVRBMElESXVOekUxTFM0Mk9EZ2dNeTQxTlRrdE1TNDNNREVpTHo0OEwzTjJaejQ9Ii8+PHRleHQgYXJpYS1oaWRkZW49InRydWUiIHg9IjQxNSIgeT0iMTUwIiBmaWxsPSIjMDEwMTAxIiBmaWxsLW9wYWNpdHk9Ii4zIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgdGV4dExlbmd0aD0iMzcwIj5NYWNPUzwvdGV4dD48dGV4dCB4PSI0MTUiIHk9IjE0MCIgdHJhbnNmb3JtPSJzY2FsZSguMSkiIGZpbGw9IiNmZmYiIHRleHRMZW5ndGg9IjM3MCI+TWFjT1M8L3RleHQ+PHRleHQgYXJpYS1oaWRkZW49InRydWUiIHg9Ijk2NSIgeT0iMTUwIiBmaWxsPSIjMDEwMTAxIiBmaWxsLW9wYWNpdHk9Ii4zIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgdGV4dExlbmd0aD0iNTcwIj54ODYgLyBBUk08L3RleHQ+PHRleHQgeD0iOTY1IiB5PSIxNDAiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiBmaWxsPSIjZmZmIiB0ZXh0TGVuZ3RoPSI1NzAiPng4NiAvIEFSTTwvdGV4dD48L2c+PC9zdmc+" alt="MacOS" /></a> <a href="https://docs.microsoft.com/windows/wsl/about"><img role="img" aria-label="WSL" src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNjMiIGhlaWdodD0iMjAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0iV1NMOiBVYnVudHUgMjQuMDQgTFRTIj48dGl0bGU+V1NMOiBVYnVudHUgMjQuMDQgTFRTPC90aXRsZT48bGluZWFyR3JhZGllbnQgaWQ9InMiIHgyPSIwIiB5Mj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjYmJiIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PC9saW5lYXJHcmFkaWVudD48Y2xpcFBhdGggaWQ9InIiPjxyZWN0IHdpZHRoPSIxNjMiIGhlaWdodD0iMjAiIHJ4PSIzIiBmaWxsPSIjZmZmIi8+PC9jbGlwUGF0aD48ZyBjbGlwLXBhdGg9InVybCgjcikiPjxyZWN0IHdpZHRoPSI1MiIgaGVpZ2h0PSIyMCIgZmlsbD0iIzU1NSIvPjxyZWN0IHg9IjUyIiB3aWR0aD0iMTExIiBoZWlnaHQ9IjIwIiBmaWxsPSIjZTk1NDIwIi8+PHJlY3Qgd2lkdGg9IjE2MyIgaGVpZ2h0PSIyMCIgZmlsbD0idXJsKCNzKSIvPjwvZz48ZyBmaWxsPSIjZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iVmVyZGFuYSxHZW5ldmEsRGVqYVZ1IFNhbnMsc2Fucy1zZXJpZiIgdGV4dC1yZW5kZXJpbmc9Imdlb21ldHJpY1ByZWNpc2lvbiIgZm9udC1zaXplPSIxMTAiPjxpbWFnZSB4PSI1IiB5PSIzIiB3aWR0aD0iMTQiIGhlaWdodD0iMTQiIGhyZWY9ImRhdGE6aW1hZ2Uvc3ZnK3htbDtiYXNlNjQsUEhOMlp5Qm1hV3hzUFNJalptWm1JaUJ5YjJ4bFBTSnBiV2NpSUhacFpYZENiM2c5SWpBZ01DQXlOQ0F5TkNJZ2VHMXNibk05SW1oMGRIQTZMeTkzZDNjdWR6TXViM0puTHpJd01EQXZjM1puSWo0OGRHbDBiR1UrVEdsdWRYZzhMM1JwZEd4bFBqeHdZWFJvSUdROUlrMHhNaTQxTURRZ01HTXRMakUxTlNBd0xTNHpNVFV1TURBNExTNDBPQzR3TWpFdE5DNHlNall1TXpNekxUTXVNVEExSURRdU9EQTNMVE11TVRjZ05pNHlPVGd0TGpBM05pQXhMakE1TWkwdU15QXhMamsxTXkweExqQTFJRE11TURJdExqZzROU0F4TGpBMU1TMHlMakV5TnlBeUxqYzFMVEl1TnpFMklEUXVOVEl4TFM0eU56Z3VPRE15TFM0ME1TQXhMalk0TkMwdU1qZzNJREl1TkRnNVlTNDBNalF1TkRJMElEQWdNREF0TGpFeExqRXpOV010TGpJMkxqSTJPQzB1TkRVdU5pMHVOall6TGpnek9TMHVNVGs1TGpFNU9TMHVORGcxTGpJMk55MHVOemszTGpRdExqTXhNeTR4TXpZdExqWTFPQzR5TmprdExqZzJOQzQyT0MwdU1Ea3VNVGc1TFM0eE16WXVNemswTFM0eE16SXVOakF5SURBZ0xqRTVPUzR3TWpjdU5DNHdOVFV1TlRNMkxqQTFPQzR6T1RrdU1URTJMamN5T0M0d05DNDVOeTB1TWpRNUxqWTRMUzR5T0NBeExqRTBOUzB1TVRBMklERXVORGcwTGpFM05DNHpNelF1TlRNMUxqUTNMamswTGpZd01TNDRNUzR5SURFdU9URXVNVE0xSURJdU56YzBMall1T1RJMkxqUTJOaUF4TGpnMk5pNDJOeUF5TGpZeE5pNDBOeTQxTWpZdExqRXhOaTQ1TnkwdU5EWTBJREV1TWpBNExTNDVORFl1TlRnM0xTNHdNRE1nTVM0eU15MHVNalk1SURJdU1qWXRMak16TkM0Mk9Ua3RMakExT0NBeExqVTNOQzR5TmpjZ01pNDFOemN1TWk0d01qVXVNVE0wTGpBMk15NHhPVGd1TVRFMExqTXpNMnd1TURBekxqQXdNMk11TXpreExqYzNPQ0F4TGpFeE15QXhMakV6TWlBeExqZzROQ0F4TGpBM01TNDNOekV0TGpBMklERXVOVGt5TFM0MU16WWdNaTR5TlRjdE1TNHpNRFl1TmpNeExTNDNOalVnTVM0Mk9ETXRNUzR3T0RRZ01pNHpOemd0TVM0MU1ETXVNelE0TFM0eE9Ua3VOakk1TFM0ME5qa3VOalE1TFM0NE5UTXVNREl6TFM0MExTNHlMUzQ0TVRFdExqY3hOQzB4TGpNM05uWXRMakE1TjJ3dExqQXdNeTB1TURBell5MHVNVGN0TGpJdExqSTFMUzQxTXpVdExqTXpPQzB1T1RJMkxTNHdPRFV0TGpRd01TMHVNVGd5TFM0M09EWXRMalE1TWkweExqQTBObWd0TGpBd00yTXRMakExT1MwdU1EVTBMUzR4TWpNdExqQTJOeTB1TVRnNExTNHhNelZoTGpNMU55NHpOVGNnTUNBd01DMHVNVGt0TGpBMk5HTXVORE14TFRFdU1qYzRMakkyTkMweUxqVTFMUzR4TnpNdE15NDJPVFF0TGpVek15MHhMalF4TFRFdU5EWTFMVEl1TmpNNExUSXVNVGMxTFRNdU5EZ3pMUzQzT1RZdE1TNHdNRFV0TVM0MU56WXRNUzQ1TlRjdE1TNDFOaTB6TGpNMk9DNHdNall0TWk0eE5USXVNak0yTFRZdU1UTXpMVE11TlRRMExUWXVNVE01ZW0wdU5USTVJRE11TkRBMWFDNHdNVE5qTGpJeE15QXdJQzR6T1RZdU1EWXlMalU0TkM0eE9UZ3VNVGt1TVRNMUxqTXpMak16TWk0ME16Z3VOVE16TGpFd05TNHlOVGt1TVRVNExqUTFPUzR4TmpZdU56STBJREF0TGpBeUxqQXdOaTB1TURRdU1EQTJMUzR3Tm5ZdU1UQTFZUzR3T0RZdU1EZzJJREFnTURFdExqQXdOQzB1TURJeGJDMHVNREEwTFM0d01qUmhNUzQ0TURjZ01TNDRNRGNnTUNBd01TMHVNVFV1TnpBMkxqazFNeTQ1TlRNZ01DQXdNUzB1TWpFekxqTXpOUzQzTVM0M01TQXdJREF3TFM0d09EZ3RMakEwTW1NdExqRXdOQzB1TURRMUxTNHhPVGd0TGpBMk5DMHVNamcwTFM0eE16TmhNUzR6TVRJZ01TNHpNVElnTUNBd01DMHVNakl0TGpBMk5tTXVNRFV0TGpBMkxqRTBOaTB1TVRNekxqRTRNeTB1TVRrNExqQTFNeTB1TVRJNExqQTRNaTB1TWpZMExqQTRPQzB1TkRBeWRpMHVNREpoTVM0eU1TQXhMakl4SURBZ01EQXRMakEyTVMwdU5HTXRMakEwTlMwdU1UTTBMUzR4TURFdExqSXRMakU0TXkwdU16TXpMUzR3T0RRdExqQTJOaTB1TVRZM0xTNHhNekl0TGpJMk55MHVNVE15YUMwdU1ERTJZeTB1TURreklEQXRMakUzTmk0d015MHVNall5TGpFek1tRXVPQzQ0SURBZ01EQXRMakl3TlM0ek16UWdNUzR4T0NBeExqRTRJREFnTURBdExqQTVMalIyTGpBeE9XTXVNREF5TGpBNE9TNHdNRGd1TVRjNUxqQXlMakkyTnkwdU1Ua3pMUzR3TmpjdExqUXpPQzB1TVRNMUxTNDJNRGN0TGpJd01tRXhMall6TlNBeExqWXpOU0F3SURBeExTNHdNVGd0TGpKMkxTNHdNbUV4TGpjM01pQXhMamMzTWlBd0lEQXhMakUxTFM0M05qaGpMakE0TWkwdU1qSXVNak15TFM0ME1EWXVORE10TGpVek0yRXVPVGcxTGprNE5TQXdJREF4TGpVNU5DMHVNbnB0TFRJdU9UWXlMakExT1dndU1ETTJZeTR4TkRJZ01DQXVNamN1TURRNExqTTVPUzR4TXpVdU1UUTJMakV5T1M0eU5qUXVNamc0TGpNME5DNDBOalV1TURrdU1UazVMakUwTGpRdU1UVXpMalkyTjNZdU1EQTBZeTR3TURjdU1UTTBMakF3Tmk0eUxTNHdNREl1TWpZMmRpNHdPR010TGpBekxqQXdOeTB1TURVMkxqQXhPQzB1TURnekxqQXlOQzB1TVRVeUxqQTFOUzB1TWpjMExqRXpOUzB1TXprekxqSXVNREV5TFM0d09TNHdNVE10TGpFNExqQXdNeTB1TWpZM2RpMHVNREUxWXkwdU1ERXlMUzR4TXpNdExqQTBMUzR5TFM0d09ESXRMak16TTJFdU5qRXpMall4TXlBd0lEQXdMUzR4TmpZdExqSTJOeTR5TkRndU1qUTRJREFnTURBdExqRTRNeTB1TURZMGFDMHVNREl4WXkwdU1EY3hMakF3TmkwdU1UTXVNRFF0TGpFNE5pNHhNekpoTGpVMU1pNDFOVElnTUNBd01DMHVNVEl1TWpjdU9UUTBMamswTkNBd0lEQXdMUzR3TWpNdU16TjJMakF4TldNdU1ERXlMakV6TlM0d016Y3VNaTR3T0M0ek16UXVNRFEyTGpFek5DNHdPVGd1TWk0eE5qWXVNalk0TGpBeExqQXdPUzR3TWk0d01UZ3VNRE0wTGpBeU5DMHVNRGN1TURVM0xTNHhNVGN1TURjdExqRTNOaTR4TXpaaExqTXdOQzR6TURRZ01DQXdNUzB1TVRNeExqQTJPQ0F5TGpZeUlESXVOaklnTUNBd01TMHVNamMxTFM0ME1ESWdNUzQzTnpJZ01TNDNOeklnTUNBd01TMHVNVFUxTFM0Mk5qY2dNUzQzTlRrZ01TNDNOVGtnTUNBd01TNHdPQzB1TmpZNElERXVORE1nTVM0ME15QXdJREF4TGpJNE15MHVOVE0xWXk0eE1qZ3RMakV6TXk0eU5pMHVNaTQwTVRndExqSjZiVEV1TXpjZ01TNDNNRFpqTGpNek1pQXdJQzQzTXpNdU1EWTFJREV1TWpFMkxqTTVPUzR5T1RNdU1pNDFNak11TWpZNUlERXVNRFV5TGpRMk9HZ3VNREF6WXk0eU5UVXVNVE0yTGpRd05TNHlOall1TkRjNExqTTVPWFl0TGpFek1XRXVOVGN4TGpVM01TQXdJREF4TGpBeE5pNDBOMk10TGpFeU15NHpNUzB1TlRFMkxqWTBNeTB4TGpBMk15NDROREoyTGpBd01tTXRMakkyT0M0eE16VXRMalV3TVM0ek16TXRMamMzTlM0ME5qVXRMakkzTmk0eE16VXRMalU0T0M0eU9USXRNUzR3TVRJdU1qWTNZVEV1TVRNNUlERXVNVE01SURBZ01ERXRMalEwT0MwdU1EWTNJRE11TlRZMklETXVOVFkySURBZ01ERXRMak15TWkwdU1UazRZeTB1TVRrMUxTNHhNelV0TGpNMk15MHVNek15TFM0Mk1USXRMalEyTlhZdExqQXdOV2d0TGpBd05XTXRMalF0TGpJME5pMHVOakUyTFM0MU1USXRMalk0TmkwdU56RXRMakEzTFM0eU5qZ3RMakF3TlMwdU5EY3VNVGt6TFM0MkxqSXlOQzB1TVRNMUxqTTRMUzR5TnpFdU5EZ3pMUzR6TXpZdU1UQTBMUzR3TnpRdU1UUXpMUzR4TURJdU1UYzJMUzR4TXpGb0xqQXdNbll0TGpBd00yTXVNVFk1TFM0eU1ESXVORE0yTFM0ME55NDRNemt0TGpZd01TNHhNemt0TGpBek5pNHlPVFF0TGpBMk5TNDBOall0TGpBMk5YcHRNaTQ0SURJdU1UUXlZeTR6TlRnZ01TNDBNVGNnTVM0eE9UWWdNeTQwTnpVZ01TNDNNelVnTkM0ME56TXVNamcyTGpVek5DNDROVFVnTVM0Mk5Ua2dNUzR4TURJZ015NHdNalF1TVRVMkxTNHdNRFV1TXpNdU1ERTRMalV4TXk0d05qUXVOalEyTFRFdU5qY3hMUzQxTkRZdE15NDBOamN0TVM0d09Ea3RNeTQ1TmpZdExqSXlMUzR5TFM0eU16SXRMak16TlMwdU1USXpMUzR6TXpVdU5Ua3VOVE0wSURFdU16WTFJREV1TlRjeUlERXVOalEySURJdU56VTNMakV6TGpVek5TNHhOaUF4TGpFd05DNHdNakVnTVM0Mk55NHdOamN1TURJNExqRXpOUzR3Tmk0eU1EVXVNRFkzSURFdU1ETXlMalV6TkNBeExqUXhNeTQ1TXpnZ01TNHlNeUF4TGpVek4zWXRMakEwTTJNdExqQTJMUzR3TURNdExqRXlJREF0TGpFNElEQm9MUzR3TVRaakxqRTFNUzB1TkRZM0xTNHhPREl0TGpneU5TMHhMakEyTlMweExqSXlOQzB1T1RFMUxTNDBMVEV1TmpRMkxTNHpNell0TVM0M055NDBOalV0TGpBd09DNHdORE10TGpBeE15NHdOall0TGpBeE9DNHhNelV0TGpBMk9DNHdNak10TGpFek9TNHdOVE10TGpJd09TNHdOalF0TGpRekxqSTJPQzB1TmpZeUxqWTJPUzB1TnpreklERXVNVGczTFM0eE15NDFNek10TGpFM0lERXVNVFUyTFM0eU1EVWdNUzQ0TmpsMkxqQXdNMk10TGpBeUxqTXpOQzB1TVRjdU9ETTRMUzR6TVRrZ01TNHpOUzB4TGpVZ01TNHdOekl0TXk0MU9DQXhMalV6T0MwMUxqTTBPQzR6TXpSaE1pNDJORFVnTWk0Mk5EVWdNQ0F3TUMwdU5EQXlMUzQxTXpNZ01TNDBOU0F4TGpRMUlEQWdNREF0TGpJM05TMHVNek16WXk0eE9ESWdNQ0F1TXpNNExTNHdNeTQwTmpVdExqQTJOMkV1TmpFMUxqWXhOU0F3SURBd0xqTXhOQzB1TXpNMFl5NHhNRGd0TGpJMk55QXdMUzQyT1RjdExqTTBOUzB4TGpFMk15MHVNelExTFM0ME5qY3RMamt6TVMwdU9UazFMVEV1TnpnNExURXVOVEl4TFM0Mk15MHVOQzB1T1RnMkxTNDROeTB4TGpFMUxURXVNemsyTFM0eE5qVXRMalV6TkMwdU1UUXpMVEV1TURnMUxTNHdNVFV0TVM0Mk5EVXVNalExTFRFdU1EY3VPRGN6TFRJdU1URWdNUzR5TnpRdE1pNDNOak11TVRBM0xTNHdOalV1TURNM0xqRXpOUzB1TkRBNExqazNOQzB1TXprMkxqYzFNUzB4TGpFMElESXVORGszTFM0eE1qSWdNeTQ0TlRSaE9DNHhNak1nT0M0eE1qTWdNQ0F3TVM0Mk5EY3RNaTQ0TnpaakxqVTJOQzB4TGpJM09DQXhMamMwTXkwekxqVXdOQ0F4TGpnek5pMDFMakkyT0M0d05EZ3VNRE0yTGpJeE55NHhNelV1TWpnNUxqSXdNaTR5TVRndU1UTXpMak00TGpNek15NDFPUzQwTmpVdU1qRXVNakF4TGpRM055NHpNelV1T0RjMkxqTXpOUzR3TXprdU1EQXpMakEzTlM0d01EWXVNVEV1TURBMkxqUXhNaUF3SUM0M015MHVNVE0wTGprNU55MHVNalk0TGpJNUxTNHhNelF1TlRJdExqTXpOQzQzTkMwdU5HZ3VNREExWXk0ME5qY3RMakV6TlM0NE16VXRMalF3TWlBeExqQTBOQzB1TjNwdE1pNHhPRFVnT0M0NU5UaGpMakF6Tnk0MkxqTTBNeUF4TGpJME5TNDRPRElnTVM0ek56Y3VOVGc0TGpFek5DQXhMalF6TkMwdU16TXpJREV1TnpreExTNDNOalZzTGpJeE1TMHVNREZqTGpNeE5TMHVNREEzTGpVM055NHdNUzQ0TkRjdU1qWTRiQzR3TURNdU1EQXpZeTR5TURndU1UazVMak13TlM0MU15NHpPVEV1T0RjMkxqQTROUzQwTGpFMU5DNDNPQzQwTURrZ01TNHdOall1TkRnMkxqVXlOeTQyTkRVdU9UQTJMall6TmlBeExqRTBiQzR3TURNdExqQXdOM1l1TURFNGJDMHVNREF6TFM0d01USmpMUzR3TVRVdU1qWXlMUzR4T0RVdU16azJMUzQwT1RndU5UazFMUzQyTXk0ME1ERXRNUzQzTkRZdU56RXlMVEl1TkRVM0lERXVOVGN0TGpZeE9DNDNNemN0TVM0ek55QXhMakUwTFRJdU1ETTJJREV1TVRreExTNDJOalF1TURVekxURXVNak0zTFM0eUxURXVOVGMwTFM0NE9UaHNMUzR3TURVdExqQXdNMk10TGpJeExTNDBMUzR4TWkweExqQXlOUzR3TlRZdE1TNDJPUzR4TnpZdExqWTJPQzQwTWpndE1TNHpORFF1TkRZekxURXVPRGszTGpBek55MHVOekUwTGpBM05pMHhMak16TlM0eE9UVXRNUzQ0TVRRdU1USXRMalEyTlM0ek1EZ3RMamM1Tnk0Mk5ERXRMams0Tkd3dU1EUTFMUzR3TWpKNmJTMHhNQzQ0TVRRdU1EUTVhQzR3TVdNdU1EVXpJREFnTGpFd05TNHdNRFV1TVRVM0xqQXhOQzR6TnpZdU1EVTFMamN3Tmk0ek16TWdNUzR3TWpNdU56VXliQzQ1TVNBeExqWTJOQzR3TURNdU1EQXpZeTR5TkRNdU5UTXpMamMxTkNBeExqQTJOQ0F4TGpFNE9TQXhMall6Tnk0ME16UXVOVGs0TGpjM0lERXVNVE14TGpjeU9TQXhMalUzZGk0d01EWmpMUzR3TlRjdU56UTBMUzQwT0NBeExqRTBPQzB4TGpFeU5TQXhMakk1TkMwdU5qUTFMakV6TlMweExqVXlMakF3TWkweUxqTTVOUzB1TkRZMExTNDVOamd0TGpVek5pMHlMakV4T0MwdU5EWTVMVEl1T0RVM0xTNDJNREl0TGpNMk9TMHVNRFkyTFM0Mk1TMHVNaTB1TnpJekxTNDBMUzR4TVMwdU1pMHVNVEV6TFM0Mk1ESXVNVEl6TFRFdU1qTjJMUzR3TURSc0xqQXdNaTB1TURBell5NHhNVGN0TGpNek5DNHdNeTB1TnpVeUxTNHdNamN0TVM0eE1UZ3RMakExTlMwdU5EQXhMUzR3T0RNdExqY3hMakEwTXkwdU9UUXVNVFl0TGpNek5DNHpPVFl0TGpRdU5qa3RMalV6TXk0eU9UUXRMakV6TlM0Mk5DMHVNakF5TGpreE5TMHVORGRvTGpBd01uWXRMakF3TW1NdU1qVTJMUzR5TmpndU5EUTFMUzQyTURFdU5qWTRMUzQ0TXpndU1Ua3RMakl3TVM0ek9DMHVNek0yTGpZMk15MHVNek0yZW0wM0xqRTFPUzA1TGpBM05HTXRMalF6TlM0eU1ERXRMamswTlM0MU16VXRNUzQwT0RndU5UTTFMUzQxTkRJZ01DMHVPVGN0TGpJMk55MHhMakk0TFM0ME5qWXRMakUxTkMwdU1UTTBMUzR5T0MwdU1qWTRMUzR6TnpNdExqTXpOUzB1TVRZMExTNHhNelF0TGpFME5DMHVNek16TFM0d056UXRMak16TXk0eE1Ea3VNREUyTGpFeU9TNHhNelF1TVRrNUxqSXVNRGsyTGpBMk5pNHlNVFV1TWk0ek5pNHpNek11TWpreUxqSXVOamd1TkRZM0lERXVNVFkzTGpRMk55NDBPRFVnTUNBeExqQTFNeTB1TWpZM0lERXVNems0TFM0ME5qWXVNVGsxTFM0eE16VXVORFExTFM0ek16UXVOalE0TFM0ME5qY3VNVFUyTFM0eE16WXVNVFE1TFM0eU5qY3VNamM1TFM0eU5qY3VNVEk0TGpBeE5pNHdNelF1TVRNMExTNHhORGN1TXpNeVlUZ3VNRGszSURndU1EazNJREFnTURFdExqWTVMalEyT0hwdExURXVNRGd5TFRFdU5UZ3pWalV1TmpSakxTNHdNRFl0TGpBeUxqQXhNeTB1TURReUxqQXlPUzB1TURVdU1EYzBMUzR3TkRNdU1UZ3RMakF5Tnk0eU5pNHdNRFF1TURZeklEQWdMakUyTGpBMk55NHhOUzR4TXpVdExqQXdOaTR3TkRrdExqQTROUzR3TmpZdExqRXpOUzR3TmpZdExqQTFOU0F3TFM0d09USXRMakEwTXkwdU1UUXhMUzR3TmpndExqQTFNaTB1TURFNExTNHhORFl0TGpBd09DMHVNVFl6TFM0d05qVjZiUzB1TlRVeElEQmpMUzR3TWk0d05UZ3RMakV4TXk0d05Ea3RMakUyTmk0d05qWXRMakEwTnk0d01qVXRMakE0Tmk0d05qZ3RMakUwTGpBMk9DMHVNRFVnTUMwdU1UTXRMakF5TFM0eE16WXRMakEyT0MwdU1ERXRMakEyTmk0d09EZ3RMakV6TXk0eE5TMHVNVE16TGpBNExTNHdNekV1TVRnMExTNHdORGN1TWpVNUxTNHdNRFV1TURFNUxqQXdPUzR3TXpZdU1ETXVNRE11TURWMkxqQXlhQzR3TURONklpOCtQQzl6ZG1jKyIvPjx0ZXh0IGFyaWEtaGlkZGVuPSJ0cnVlIiB4PSIzNTUiIHk9IjE1MCIgZmlsbD0iIzAxMDEwMSIgZmlsbC1vcGFjaXR5PSIuMyIgdHJhbnNmb3JtPSJzY2FsZSguMSkiIHRleHRMZW5ndGg9IjI1MCI+V1NMPC90ZXh0Pjx0ZXh0IHg9IjM1NSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iMjUwIj5XU0w8L3RleHQ+PHRleHQgYXJpYS1oaWRkZW49InRydWUiIHg9IjEwNjUiIHk9IjE1MCIgZmlsbD0iIzAxMDEwMSIgZmlsbC1vcGFjaXR5PSIuMyIgdHJhbnNmb3JtPSJzY2FsZSguMSkiIHRleHRMZW5ndGg9IjEwMTAiPlVidW50dSAyNC4wNCBMVFM8L3RleHQ+PHRleHQgeD0iMTA2NSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iMTAxMCI+VWJ1bnR1IDI0LjA0IExUUzwvdGV4dD48L2c+PC9zdmc+" alt="WSL" /></a> <a href="https://www.redhat.com/"><img role="img" aria-label="RHEL" src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4NyIgaGVpZ2h0PSIyMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJSSEVMIDggfCA5Ij48dGl0bGU+UkhFTCA4IHwgOTwvdGl0bGU+PGxpbmVhckdyYWRpZW50IGlkPSJzIiB4Mj0iMCIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2JiYiIgc3RvcC1vcGFjaXR5PSIuMSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1vcGFjaXR5PSIuMSIvPjwvbGluZWFyR3JhZGllbnQ+PGNsaXBQYXRoIGlkPSJyIj48cmVjdCB3aWR0aD0iODciIGhlaWdodD0iMjAiIHJ4PSIzIiBmaWxsPSIjZmZmIi8+PC9jbGlwUGF0aD48ZyBjbGlwLXBhdGg9InVybCgjcikiPjxyZWN0IHdpZHRoPSIwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjNTU1Ii8+PHJlY3QgeD0iMCIgd2lkdGg9Ijg3IiBoZWlnaHQ9IjIwIiBmaWxsPSIjZWUwMDAwIi8+PHJlY3Qgd2lkdGg9Ijg3IiBoZWlnaHQ9IjIwIiBmaWxsPSJ1cmwoI3MpIi8+PC9nPjxnIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJWZXJkYW5hLEdlbmV2YSxEZWphVnUgU2FucyxzYW5zLXNlcmlmIiB0ZXh0LXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiBmb250LXNpemU9IjExMCI+PGltYWdlIHg9IjUiIHk9IjMiIHdpZHRoPSIxNCIgaGVpZ2h0PSIxNCIgaHJlZj0iZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCbWFXeHNQU0lqWm1abUlpQnliMnhsUFNKcGJXY2lJSFpwWlhkQ2IzZzlJakFnTUNBeU5DQXlOQ0lnZUcxc2JuTTlJbWgwZEhBNkx5OTNkM2N1ZHpNdWIzSm5Mekl3TURBdmMzWm5JajQ4ZEdsMGJHVStVbVZrSUVoaGREd3ZkR2wwYkdVK1BIQmhkR2dnWkQwaVRURTJMakF3T1NBeE15NHpPRFpqTVM0MU56Y2dNQ0F6TGpnMkxTNHpNallnTXk0NE5pMHlMakl3TW1FeExqYzJOU0F4TGpjMk5TQXdJREFnTUMwdU1EUXRMalF6TVd3dExqazBMVFF1TURoakxTNHlNVFl0TGpnNU9DMHVOREEyTFRFdU16QTFMVEV1T1RneUxUSXVNRGt6TFRFdU1qSXpMUzQyTWpVdE15NDRPRGd0TVM0Mk5UZ3ROQzQyTnpZdE1TNDJOVGd0TGpjek15QXdMUzQ1TkRjdU9UUTJMVEV1T0RJeUxqazBOaTB1T0RReUlEQXRNUzQwTmpjdExqY3dOaTB5TGpJMU5TMHVOekEyTFM0M05UY2dNQzB4TGpJMUxqVXhOUzB4TGpZeklERXVOVGMySURBZ01DMHhMakEySURJdU9Ua3RNUzR4T1RjZ015NDBNalJoTGpneExqZ3hJREFnTUNBd0xTNHdNamd1TWpRMVl6QWdNUzR4TmpJZ05DNDFOemNnTkM0NU56UWdNVEF1TnpFZ05DNDVOelJ0TkM0eE1ERXRNUzQwTXpWakxqSXhPQ0F4TGpBek1pNHlNVGdnTVM0eE5DNHlNVGdnTVM0eU56Y2dNQ0F4TGpjMk5TMHhMams0TkNBeUxqYzBOUzAwTGpVNU15QXlMamMwTlMwMUxqZzVOUzR3TURRdE1URXVNRFl0TXk0ME5URXRNVEV1TURZdE5TNDNNelJoTWk0ek1qWWdNaTR6TWpZZ01DQXdJREVnTGpFNUxTNDVNalZETWk0M05EWWdPUzQwTVRVZ01DQTVMamM1TkNBd0lERXlMakl4TjJNd0lETXVPVFk1SURrdU5EQTFJRGd1T0RZeElERTJMamcxTVNBNExqZzJNU0ExTGpjeElEQWdOeTR4TkRrdE1pNDFPRElnTnk0eE5Ea3ROQzQyTWlBd0xURXVOakExTFRFdU16ZzNMVE11TkRJMUxUTXVPRGczTFRRdU5URXlJaTgrUEM5emRtYysiLz48dGV4dCBhcmlhLWhpZGRlbj0idHJ1ZSIgeD0iNTI1IiB5PSIxNTAiIGZpbGw9IiMwMTAxMDEiIGZpbGwtb3BhY2l0eT0iLjMiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiB0ZXh0TGVuZ3RoPSI1OTAiPlJIRUwgOCB8IDk8L3RleHQ+PHRleHQgeD0iNTI1IiB5PSIxNDAiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiBmaWxsPSIjZmZmIiB0ZXh0TGVuZ3RoPSI1OTAiPlJIRUwgOCB8IDk8L3RleHQ+PC9nPjwvc3ZnPg==" alt="RHEL" /></a></p>
+<h2 id="compiling-rstt-from-source">Compiling RSTT from source</h2>
+<p>In the latest versions of RSTT, no paths should need to be specified
+in any environment variables to compile and run. During the compilation
+process, the <em>Makefiles</em> will point to the correct library paths
+within the default directory structure. If you are having difficulty
+with strange errors related to paths during compilation, try and
+temporarily remove any remnants of past RSTT versions in environment
+variables such as <code>$PATH</code>, <code>$LD_LIBRARY_PATH</code>,
+<code>$DYLD_LIBRARY_PATH</code>, and <code>$SLBM_ROOT</code> or
+<code>$SLBM_HOME</code>.</p>
+<p>When writing your own codes that utilize the RSTT libraries, you may
+find it useful to set one of the following environmental variables to
+the root directory of RSTT:</p>
+<ol type="1">
+<li><code>$RSTT_ROOT</code></li>
+<li><code>$RSTT_HOME</code></li>
+<li><code>$SLBM_ROOT</code></li>
+<li><code>$SLBM_HOME</code></li>
+</ol>
+<p>In both the Java and Python interfaces, RSTT will first attempt to
+load the appropriate libraries through default system paths. If that
+fails, they will fall back to searching the path provided in the above
+variables, in order.</p>
+<h3 id="dependencies">Dependencies</h3>
+<style>
+div.sxs div.sourceCode{display:inline-block;max-width:450px;vertical-align: top;}
+</style>
+<h4 id="macos">MacOS</h4>
+<p>Below is a list of packages and software required to build all
+interfaces and documentation of RSTT from source. The version numbers
+listed are those that were used and tested in development. RSTT should
+compile and run on much older versions of these components.</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 38%" />
+<col style="width: 46%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">Software</th>
+<th style="text-align: left;">Version</th>
+<th style="text-align: left;">Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">make</td>
+<td style="text-align: left;">3.81</td>
+<td style="text-align: left;">Running compile scripts</td>
+</tr>
+<tr>
+<td style="text-align: left;">gcc</td>
+<td style="text-align: left;">17.0.0 (Clang)</td>
+<td style="text-align: left;">Build C library and tests</td>
+</tr>
+<tr>
+<td style="text-align: left;">g++</td>
+<td style="text-align: left;">17.0.0 (Clang)</td>
+<td style="text-align: left;">Build GeoTess and core RSTT libraries and
+tests</td>
+</tr>
+<tr>
+<td style="text-align: left;">gfortran</td>
+<td style="text-align: left;">14.2.0 (GNU)</td>
+<td style="text-align: left;">Build Fortran library and tests</td>
+</tr>
+<tr>
+<td style="text-align: left;">java</td>
+<td style="text-align: left;">openjdk 24.0.1 (Temurin)</td>
+<td style="text-align: left;">Build Java JNI library and tests</td>
+</tr>
+<tr>
+<td style="text-align: left;">javac</td>
+<td style="text-align: left;">openjdk 24.0.1 (Temurin)</td>
+<td style="text-align: left;">Build Java JNI library and tests</td>
+</tr>
+<tr>
+<td style="text-align: left;">jar</td>
+<td style="text-align: left;">openjdk 24.0.1 (Temurin)</td>
+<td style="text-align: left;">Build Java JNI library and tests</td>
+</tr>
+<tr>
+<td style="text-align: left;">javadoc</td>
+<td style="text-align: left;">openjdk 24.0.1 (Temurin)</td>
+<td style="text-align: left;">Build documentation for Java code</td>
+</tr>
+<tr>
+<td style="text-align: left;">doxygen</td>
+<td style="text-align: left;">1.13.2</td>
+<td style="text-align: left;">Build documentation for C++, C, and
+Fortran code</td>
+</tr>
+<tr>
+<td style="text-align: left;">python</td>
+<td style="text-align: left;">3.13.3</td>
+<td style="text-align: left;">Run Python library and tests</td>
+</tr>
+<tr>
+<td style="text-align: left;">pip</td>
+<td style="text-align: left;">25.1.1</td>
+<td style="text-align: left;">Build Python module</td>
+</tr>
+<tr>
+<td style="text-align: left;">sphinx</td>
+<td style="text-align: left;">8.2.3</td>
+<td style="text-align: left;">Build documentation for Python code</td>
+</tr>
+</tbody>
+</table>
+<p>The easiest way to satisfy these dependencies on MacOS is to use <a href="https://mamba.readthedocs.io/">Mamba</a>/<a href="https://conda-forge.org/">conda-forge</a> for Python and the <a href="https://brew.sh/">Homebrew</a> package manager for all other
+languages. Following that, you can install the necessary dependencies by
+running these commands in a terminal window from the main RSTT
+directory:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> xcode-select <span class="at">--install</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> brew install temurin gfortran doxygen</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> conda env create <span class="at">-n</span> rstt <span class="at">-f</span> SLBM_Py_shell/environment.yml</span></code></pre></div>
+<h4 id="linux">Linux</h4>
+<p>Below is a list of packages and software required to build RSTT from
+source. The version numbers listed are not necessarily required to
+compile without error; they are simply those that were used and tested
+in development.</p>
+<table>
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 31%" />
+<col style="width: 51%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">Software</th>
+<th style="text-align: left;">Version</th>
+<th style="text-align: left;">Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">make</td>
+<td style="text-align: left;">4.3</td>
+<td style="text-align: left;">Running compile scripts</td>
+</tr>
+<tr>
+<td style="text-align: left;">gcc</td>
+<td style="text-align: left;">13.0.0</td>
+<td style="text-align: left;">Build C library and tests</td>
+</tr>
+<tr>
+<td style="text-align: left;">g++</td>
+<td style="text-align: left;">13.0.0</td>
+<td style="text-align: left;">Build GeoTess and core RSTT libraries and
+tests</td>
+</tr>
+<tr>
+<td style="text-align: left;">gfortran</td>
+<td style="text-align: left;">13.0.0</td>
+<td style="text-align: left;">Build Fortran library and tests</td>
+</tr>
+<tr>
+<td style="text-align: left;">java</td>
+<td style="text-align: left;">openjdk 21.0.5</td>
+<td style="text-align: left;">Build Java JNI library and tests</td>
+</tr>
+<tr>
+<td style="text-align: left;">javac</td>
+<td style="text-align: left;">openjdk 21.0.5</td>
+<td style="text-align: left;">Build Java JNI library and tests</td>
+</tr>
+<tr>
+<td style="text-align: left;">jar</td>
+<td style="text-align: left;">openjdk 21.0.5</td>
+<td style="text-align: left;">Build Java JNI library and tests</td>
+</tr>
+<tr>
+<td style="text-align: left;">javadoc</td>
+<td style="text-align: left;">openjdk 21.0.5</td>
+<td style="text-align: left;">Build documentation for Java code</td>
+</tr>
+<tr>
+<td style="text-align: left;">doxygen</td>
+<td style="text-align: left;">1.9.8</td>
+<td style="text-align: left;">Build documentation for C++, C, and
+Fortran code</td>
+</tr>
+<tr>
+<td style="text-align: left;">python</td>
+<td style="text-align: left;">3.10.16</td>
+<td style="text-align: left;">Run Python library and tests</td>
+</tr>
+<tr>
+<td style="text-align: left;">pip</td>
+<td style="text-align: left;">24.2</td>
+<td style="text-align: left;">Build Python module</td>
+</tr>
+<tr>
+<td style="text-align: left;">sphinx</td>
+<td style="text-align: left;">7.2.6</td>
+<td style="text-align: left;">Build documentation for Python code</td>
+</tr>
+</tbody>
+</table>
+<p>The easiest way to satisfy these dependencies on Linux, depending on
+your distro and package manager, is by running the appropriate commands
+below in a terminal window:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># C++, C</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> sudo apt install build-essential</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Fortran</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> sudo apt install gfortran</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Java</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> sudo apt install default-jdk default-jre</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Python (standard)</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> sudo apt install python3-pip python3-pip-whl python3-dev python3-pybind11 pybind11-dev</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Python (conda-forge)</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> conda env create <span class="at">-n</span> rstt <span class="at">-f</span> SLBM_Py_shell/environment.yml</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co"># documentation</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> sudo apt install doxygen pandoc python3-sphinx python3-sphinx-autodoc-typehints python3-sphinx-rtd-theme</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># enable additional package repo</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> sudo dnf config-manager <span class="at">--set-enabled</span> crb         <span class="co"># RHEL 9</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> sudo dnf config-manager <span class="at">--set-enabled</span> powertools  <span class="co"># RHEL 8</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># C, C++</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> sudo dnf group install <span class="st">&#39;Development Tools&#39;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Fortran</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> sudo dnf install gcc-gfortran</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Java</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> sudo dnf install java-devel</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Python (stanard)</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> sudo dnf install python3-devel python3-wheel python3-pybind11 pybind11-devel</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Python (conda-forge)</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> conda env create <span class="at">-n</span> rstt <span class="at">-f</span> SLBM_Py_shell/environment.yml</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co"># documentation</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> sudo dnf install doxygen pandoc python3-sphinx</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> sudo python3 <span class="at">-m</span> pip install sphinx-autodoc-typehints sphinx-rtd-theme</span></code></pre></div>
+<h3 id="build-instructions">Build instructions</h3>
+<p>RSTT is developed in C++, but it also has interfaces in C, Fortran,
+Java, and Python. RSTT is distributed in various precompiled forms on <a href="https://www.sandia.gov/rstt">sandia.gov/rstt</a>, but if you
+prefer—or need—to compile it from source, the <code>Makefiles</code>
+have been designed so that you need only compile the minimum amount of
+code necessary to use RSTT with your language of choice. Do note,
+however, that because RSTT is developed in C++, the core C++ libraries
+will have to be compiled regardless of whether or not you intend to use
+only the C, Fortran, Java, or Python interfaces.</p>
+<p>To generally compile RSTT in any of its languages, use the commands,
+below:</p>
+<table>
+<colgroup>
+<col style="width: 48%" />
+<col style="width: 51%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">Command</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>make</code></td>
+<td style="text-align: left;">Make all libraries, tests, and run tests
+(C++, C, Fortran, Java, Python)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>make all</code></td>
+<td style="text-align: left;">Make all libraries, documentation, tests,
+and run tests (C++, C, Fortran, Java, Python)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>make cpp</code></td>
+<td style="text-align: left;">Make the components required for the C++
+library and run tests (<code>geotess</code>, <code>slbm</code>, and
+<code>slbm_test</code>)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>make c</code></td>
+<td style="text-align: left;">Make the components required for the C
+library and run tests (<code>geotess</code>, <code>slbm</code>,
+<code>slmbc</code>, and <code>slbmc_test</code>)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>make fortran</code></td>
+<td style="text-align: left;">Make the components required for the
+Fortran library and run tests (<code>geotess</code>, <code>slbm</code>,
+<code>slbmfort</code>, and <code>slbmfort_test</code>)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>make java</code></td>
+<td style="text-align: left;">Make the components required for the Java
+library and run tests (<code>geotess</code>, <code>slbm</code>,
+<code>slbmjni</code>, and <code>slbmjni_test</code>)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>make python</code></td>
+<td style="text-align: left;">Make the components required for the
+Python library and run tests (<code>geotess</code>, <code>slbm</code>,
+<code>slbmpy</code>, and <code>slbmpy_test</code>)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>make docs</code></td>
+<td style="text-align: left;">Make the documentation for all the
+libraries (C++, C, Fortran, Java, Python)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>make cpp_docs</code></td>
+<td style="text-align: left;">Make the documentation for the C++ library
+(<code>slbm_docs</code>)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>make c_docs</code></td>
+<td style="text-align: left;">Make the documentation for the C library
+(<code>slbmc_docs</code>)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>make fortran_docs</code></td>
+<td style="text-align: left;">Make the documentation for the Fortran
+library (<code>slbmfort_docs</code>)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>make java_docs</code></td>
+<td style="text-align: left;">Make the documentation for the Java
+library (<code>slbmjni_docs</code>)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>make python_docs</code></td>
+<td style="text-align: left;">Make the documentation for the Python
+library (<code>slbmpy_docs</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>For more granular-level control of the make process, you may use the
+following commands:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Command</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>make geotess</code></td>
+<td style="text-align: left;">Make the GeoTess library (required for
+RSTT)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>make slbm</code></td>
+<td style="text-align: left;">Make the C++ library (main RSTT code)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>make slbmc</code></td>
+<td style="text-align: left;">Make the C library</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>make slbmfort</code></td>
+<td style="text-align: left;">Make the Fortran library</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>make slbmjni</code></td>
+<td style="text-align: left;">Make the Java library</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>make slbmpy</code></td>
+<td style="text-align: left;">Make the Python library</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>make geotess_docs</code></td>
+<td style="text-align: left;">Make the documentation for the GeoTess
+library</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>make slbm_docs</code></td>
+<td style="text-align: left;">Make the documentation for the C++
+library</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>make slbmc_docs</code></td>
+<td style="text-align: left;">Make the documentation for the C
+library</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>make slbmfort_docs</code></td>
+<td style="text-align: left;">Make the documentation for the Fortran
+library</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>make slbmjni_docs</code></td>
+<td style="text-align: left;">Make the documentation for the Java
+library</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>make slbmpy_docs</code></td>
+<td style="text-align: left;">Make the documentation for the Python
+library</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>make slbm_test</code></td>
+<td style="text-align: left;">Make and run a test of the C++
+library</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>make slbmc_test</code></td>
+<td style="text-align: left;">Make and run a test of the C library</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>make slbmfort_test</code></td>
+<td style="text-align: left;">Make and run a test of the Fortran
+library</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>make slbmjni_test</code></td>
+<td style="text-align: left;">Make and run a test of the Java
+library</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>make slbmpy_test</code></td>
+<td style="text-align: left;">Make and run a test of the Python
+library</td>
+</tr>
+</tbody>
+</table>
+<h2 id="usage-examples">Usage examples</h2>
+<p>In the <code>usage_examples</code> directory, there is one example
+program for each of the languages supported by RSTT.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Language</th>
+<th style="text-align: left;">File</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">C++</td>
+<td style="text-align: left;"><code>cpp_example.cc</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">C</td>
+<td style="text-align: left;"><code>c_example.c</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Fortran</td>
+<td style="text-align: left;"><code>fortran_example.f90</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Java</td>
+<td style="text-align: left;"><code>java_example.java</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Python</td>
+<td style="text-align: left;"><code>python_example.py</code></td>
+</tr>
+</tbody>
+</table>
+<p>Each example program performs the same set of tasks and is written to
+be as simple as possible with extensive commenting. These programs are
+meant to be a starting point from which users may explore the <a href="http://www.sandia.gov/rstt/software/documentation/">documentation</a>
+and write their own code.</p>
+<p>To build and run each example, <code>cd</code> to
+<code>usage_examples</code> and run <code>make.sh</code> with any
+combination of arguments:</p>
+<ul>
+<li><code>cpp</code></li>
+<li><code>c</code></li>
+<li><code>fortran</code></li>
+<li><code>java</code></li>
+<li><code>python</code></li>
+<li><code>all</code></li>
+</ul>
+<p>To see an example of how to build and run your own progam, open
+<code>make.sh</code> and view with your favorite text or source code
+editor. This shell script is extensively commented, and each language is
+sorted into <em>compile</em> and <em>run</em> segments.</p>
+<h2 id="path-troubleshooting">Path troubleshooting</h2>
+<p>Care was taken to make linking to the RSTT libraries as painless as
+possible. For any of the languages, you can run
+<code>usage_examples/make.sh</code>, and it will print the compiling and
+run commands as they are executed so that you can see how the base
+libraries are included and linked during compilation. For example, these
+are the commands used to link and compile the Fortran usage example on
+MacOS,</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: $RSTT_ROOT = /path/to/rstt</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gfortran <span class="at">-mcpu</span><span class="op">=</span>native <span class="at">-Ddarwin</span> <span class="at">-O1</span> <span class="at">-fno-underscoring</span> <span class="at">-cpp</span> <span class="at">-ffree-line-length-none</span> <span class="at">-I</span><span class="va">$RSTT_ROOT</span>/GeoTessCPP/include <span class="at">-I</span><span class="va">$RSTT_ROOT</span>/SLBM/include <span class="at">-I</span><span class="va">$RSTT_ROOT</span>/SLBM_Fort_shell/include <span class="at">-o</span> fortran_example.o <span class="at">-c</span> fortran_example.f90</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gfortran <span class="at">-mcpu</span><span class="op">=</span>native <span class="at">-Ddarwin</span> <span class="at">-O1</span> <span class="at">-fno-underscoring</span> <span class="at">-cpp</span> <span class="at">-ffree-line-length-none</span> <span class="at">-Wl,-rpath,</span><span class="va">$RSTT_ROOT</span>/lib <span class="at">-o</span> fortran_example fortran_example.o <span class="at">-lm</span> <span class="at">-lstdc++</span> <span class="at">-L</span><span class="va">$RSTT_ROOT</span>/lib <span class="at">-lgeotesscpp</span> <span class="at">-lslbm</span> <span class="at">-lslbmFshell</span></span></code></pre></div>
+<p>For Java programs, you have to ensure that <code>libslbmjni</code> is
+in your <code>java.library.path</code>, and that
+<code>slbmjni.jar</code> is in your classpath. When invoking your
+<code>java</code> command, this can be accomplished by</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> java <span class="at">-classpath</span> .:/path/to/rstt/lib/slbmjni.jar <span class="at">-Djava.library.path</span><span class="op">=</span>/path/to/rstt/lib example_java</span></code></pre></div>
+<p>For Python programs, you should either ensure that your Python module
+search path contains the RSTT <code>lib</code> folder, e.g.,</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>sys.path.append(<span class="st">&#39;/path/to/rstt/lib&#39;</span>)</span></code></pre></div>
+<p>or you should install the compiled RSTT Python module,</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> python3 <span class="at">-m</span> pip install <span class="at">--no-index</span> <span class="at">--find-links</span><span class="op">=</span>/path/to/rstt/SLBM_Py_shell/wheel rstt</span></code></pre></div>
+<p>The <code>rstt</code> Python module contains copies of
+<code>libgeotesscpp</code> and <code>libslbm</code> within the module
+structure, itself, and unless something goes wrong, it should load those
+internal copies by default.</p>
+<p>Both the Python and Java usage examples also contain blocks of code
+to attempt to read the appropriate libraries using paths from
+environment variables if they fail to find them any other way. These
+code blocks are well-commented and are located in the
+<code>static {}</code> block in <code>java_example.java</code> and
+before the <code>if __name__ == &quot;__main__&quot;</code> in
+<code>python_example.py</code>. Both bits of code work the same way,
+which is to first attempt to load the correct libraries using a simple
+<code>loadLibrary</code> or <code>import</code> command, and if that
+fails they will search the paths delineated in the following environment
+variables, in order,</p>
+<ol type="1">
+<li><code>$RSTT_ROOT</code></li>
+<li><code>$RSTT_HOME</code></li>
+<li><code>$SLBM_ROOT</code></li>
+<li><code>$SLBM_HOME</code></li>
+</ol>
+<p>If you set one of these environment variables in your terminal
+(<code>$ export RSTT_ROOT=/path/to/rstt</code>) and simply copy and
+paste the described code blocks in the
+<code>usage_examples/java_example.java</code> and
+<code>python_example.py</code> into your own programs, you will not have
+to provide <code>-Djava.library.path</code> when invoking your
+<code>java</code> command, nor will you have to <code>pip install</code>
+the <code>rstt</code> module in Python—instead the <code>rstt</code>
+module will be imported from the <code>rstt</code> folder inside of
+<code>/path/to/rstt/lib</code>.</p>
+<h2 id="contact-information">Contact Information</h2>
+<p>For questions/issues/comments about the software, please contact:</p>
+<ul>
+<li><a href="mailto:byoung@sandia.gov">Brian Young</a> (Sandia National
+Laboratories)</li>
+</ul>
+<p>For questions/issues/comments about the results returned by RSTT,
+please contact:</p>
+<ul>
+<li><p><a href="mailto:myers30@lllnl.gov">Steve Myers</a> (Lawrence
+Livermore National Laboratory)</p></li>
+<li><p><a href="mailto:mbegnaud@lanl.gov">Mike Begnaud</a> (Los Alamos
+National Laboratory)</p></li>
+</ul>
+</body>
+</html>
