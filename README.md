@@ -120,7 +120,7 @@ Contact Information
 For questions/issues/comments about the software, please contact:
 
 * [Istvan Bondar][slsiloc] (Seismic Location Services)
-* [Dirk Roessler][gempa] (Gempa GmbH)
+* [Dirk Roessler][gempa] (gempa GmbH)
 
 [iloc]:     https://www.slsiloc.eu
 [seiscomp]:    https://www.gempa.de
