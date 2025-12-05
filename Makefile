@@ -67,10 +67,10 @@ sgr0 := $(shell tput sgr0)
 #-------------------------------------------------------------------------------
 # targets
 #-------------------------------------------------------------------------------
-all: setup rstt iLoc tests
+all: setup rstt iLoc ttimes
 
 # command that tells us which recipes don't build source files
-.PHONY: all setup rstt iLoc tests
+.PHONY: all setup rstt iLoc ttimes
 
 setup:
 #
@@ -109,14 +109,14 @@ iLoc:
 	@echo "$(blue)done     $(sgr0)"
 	@echo "$(blue)---------$(sgr0)"
 #
-#   compile tests and ttimes API
+#   compile ttimes API
 #
-tests:
+ttimes:
 	@echo "$(blue)-----------------------------------$(sgr0)"
 	@echo "$(blue)Compiling tests and sciLocTTimes.. $(sgr0)"
 	@echo "$(blue)-----------------------------------$(sgr0)"
-	$(MAKE) -C Tests all
-	mv Tests/sciLocTTimes $(HOME)/bin
+	$(MAKE) -C TTimes all
+	mv TTimes/sciLocTTimes $(HOME)/bin
 	@echo "$(blue)---------$(sgr0)"
 	@echo "$(blue)done.    $(sgr0)"
 	@echo "$(blue)---------$(sgr0)"

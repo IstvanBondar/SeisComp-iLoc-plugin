@@ -46,12 +46,10 @@ OS:=$(shell uname -s | tr [:upper:] [:lower:])
 # detect bit size
 #
 UNAME_M:=$(shell uname -m)
-ifeq ($(UNAME_M),x86_64)
-    ARCH:=64
-else ifeq ($(UNAME_M),arm64)
-    ARCH:=64
+ifeq ($(UNAME_M),$(filter $(UNAME_M),x86_64 arm64 aarch64))
+        export ARCH := 64
 else
-    ARCH:=32
+        export ARCH := 32
 endif
 #
 #
@@ -84,7 +82,7 @@ COMPILE = ${CC} ${CFLAGS} $(INCS) -o $@ -c
 # targets
 #-------------------------------------------------------------------------------
 
-all: ttimes Philippines Ukraine ARA1 ARA2 VacA VacTA VeryBig Jan Deep cleanobjs
+all: ttimes cleanobjs
 
 %.o: $($*:.o=.c)
 	${COMPILE} $*.c
@@ -92,35 +90,6 @@ all: ttimes Philippines Ukraine ARA1 ARA2 VacA VacTA VeryBig Jan Deep cleanobjs
 ttimes: sciLocTTimes.o
 	$(CC) ${CFLAGS} $(INCS) -o sciLocTTimes sciLocTTimes.o ${LIBS}
 
-Philippines: sciLocMainPhilippines.o
-	$(CC) ${CFLAGS} $(INCS) -o PhilippinesTest sciLocMainPhilippines.o ${LIBS}
-
-Ukraine: sciLocMainUkraine.o
-	$(CC) ${CFLAGS} $(INCS) -o UkraineTest sciLocMainUkraine.o ${LIBS}
-
-ARA1: sciLocMainARA1.o
-	$(CC) ${CFLAGS} $(INCS) -o ARA1Test sciLocMainARA1.o ${LIBS}
-
-ARA2: sciLocMainARA2.o
-	$(CC) ${CFLAGS} $(INCS) -o ARA2Test sciLocMainARA2.o ${LIBS}
-
-VacTA: sciLocMainVacTA.o
-	$(CC) ${CFLAGS} $(INCS) -o VacTestTA sciLocMainVacTA.o ${LIBS}
-
-VacA: sciLocMainVacA.o
-	$(CC) ${CFLAGS} $(INCS) -o VacTestA sciLocMainVacA.o ${LIBS}
-
-VeryBig: sciLocMainVeryBig.o
-	$(CC) ${CFLAGS} $(INCS) -o VeryBigTest sciLocMainVeryBig.o ${LIBS}
-
-Jan: sciLocMainJan.o
-	$(CC) ${CFLAGS} $(INCS) -o JanTest sciLocMainJan.o ${LIBS}
-
-Deep: sciLocMainDeep.o
-	$(CC) ${CFLAGS} $(INCS) -o DeepTest sciLocMainDeep.o ${LIBS}
-	@echo "$(blue)---------$(sgr0)"
-	@echo "$(blue)done.    $(sgr0)"
-	@echo "$(blue)---------$(sgr0)"
 
 cleanobjs:
 	-rm -f *.o

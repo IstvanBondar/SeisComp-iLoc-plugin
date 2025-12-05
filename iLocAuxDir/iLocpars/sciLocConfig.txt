@@ -1,6 +1,6 @@
 #
 # Default configuration parameters for SeisComp plugin sciLoc
-# Version: 4.1
+# Version: 4.3
 #
 # Istvan Bondar, 2023
 # ibondar2014@gmail.com
@@ -19,7 +19,7 @@
 #          Stations - station coordinates
 #          magnitude - magnitude attenuation files
 #
-auxdir = /Users/istvanbondar/iLoc4.1/auxdata
+auxdir = /Users/istvanbondar/sciLocGit/iLocAuxDir
 #
 #
 # RSTT model name

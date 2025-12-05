@@ -112,14 +112,14 @@ int main()
 /*
  *  directory of auxiliary data files
  */
-    strcpy(iLocConfig.auxdir, "/Users/istvanbondar/iLoc4.0/auxdata");
+    strcpy(iLocConfig.auxdir, "/Users/istvanbondar/sciLocGit/iLocAuxDir");
     iLocConfig.Verbose = 0;
 /*
  *  Travel time predictions
  */
     strcpy(iLocConfig.TTmodel, "iasp91");
     iLocConfig.UseRSTT = 0;
-    strcpy(iLocConfig.RSTTmodel, "/Users/istvanbondar/iLoc4.0/auxdata/RSTTmodels/pdu202009Du.geotess");
+    strcpy(iLocConfig.RSTTmodel, "/Users/istvanbondar/sciLocGit/iLocAuxDir/RSTTmodels/pdu202009Du.geotess");
     iLocConfig.UseRSTTPnSn = 1;
     iLocConfig.UseRSTTPgLg = 1;
     strcpy(iLocConfig.LocalVmodel, "");
