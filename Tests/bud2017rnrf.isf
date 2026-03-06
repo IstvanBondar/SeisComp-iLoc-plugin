@@ -1,0 +1,26 @@
+BEGIN IMS1.0
+DATA_TYPE BULLETIN IMS1.0:short
+
+Event bud2017rnrf Vac
+
+   Date       Time        Err   RMS Latitude Longitude  Smaj  Smin  Az Depth   Err Ndef Nsta Gap  mdist  Mdist Qual   Author      OrigID
+2017-09-07 09:34:53.43         0.45   47.854    19.109                   0.0          5      225                   kx GRSK      1
+2017-09-07 09:34:52.50         0.15   47.830    19.160                   4.0          7      199                   kx BUD       2
+
+Magnitude  Err Nsta Author      OrigID
+ML     1.4 0.4    4 BUD       1
+
+Sta     Dist  EvAz Phase        Time      TRes  Azim AzRes   Slow   SRes Def   SNR       Amp   Per Qual Magnitude    ArrID
+A270A   0.10 278.0 P        09:34:54.9    -0.1                           T__           184.1            MLv  1.82        1
+A270A   0.10 278.0 S        09:34:56.6     0.1                           T__                                             2
+PENC    0.13 119.0 Pg       09:34:55.68   -0.4                           T__                                             9
+PENC    0.13 119.0 Sg       09:34:58.57    0.5                           T__                                            10
+A336A   0.40 345.0 P        09:35:01.2     0.3                           T__           9.7              MLv  1.44        3
+A336A   0.40 345.0 S        09:35:06.9     0.1                           T__                                             4
+PSZ     0.50  80.0 P        09:35:02.5    -0.0                           T__           3.9              MLv  1.30        5
+PSZ     0.50  80.0 Sg       09:35:12.09   -0.2                           T__                                            11
+PSZI    0.50  80.0 I        09:37:40.323       261.6                     _A_                                             8
+VYHS    0.70 342.0 P        09:35:06.65   -0.0                           T__                                             6
+VYHS    0.70 342.0 S        09:35:16.0    -0.2                           T__           0.9              MLv  0.83        7
+
+STOP
